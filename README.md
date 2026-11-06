@@ -4,12 +4,12 @@ Een zelfstandige **lokale proefversie** van de leeromgeving voor gezin Scholte, 
 
 ## Wat werkt zonder database?
 
-- Nieuwe leerlingprofielen aanmaken en aanpassen (voornaam, schoolniveau, leerjaar en vakken).
+- Eén vast leerlingprofiel: **Jake — vmbo-t, leerjaar 4**. Geen profielaanmaak of andere leerlingen.
 - De bestaande leerinterface met oefentoetsen, multiplechoice- en open vragen, hints, flashcards, voortgang, cijfers, leerdoelen en ouderoverzicht.
 - Toetsdata handmatig toevoegen per leerling.
 - Nieuwe oefeninhoud via GitHub publiceren in `content/library.json`.
 
-**Belangrijke beperking:** er is geen beveiligde login, ouderautorisatie, back-up of synchronisatie tussen apparaten. Profielen, cijfers en planning worden alleen in `localStorage` van de browser bewaard en kunnen verloren gaan als browsergegevens worden gewist. Gebruik voorlopig geen gevoelige persoonsgegevens.
+**Belangrijke beperking:** er is geen beveiligde login, ouderautorisatie, back-up of synchronisatie tussen apparaten. Cijfers en planning worden alleen in `localStorage` van de browser bewaard en kunnen verloren gaan als browsergegevens worden gewist. Gebruik voorlopig geen gevoelige persoonsgegevens.
 
 ## Gepubliceerde leerstof
 
@@ -21,7 +21,7 @@ De bibliotheek start bewust leeg: er zijn **geen oude leerlingprofielen, lespakk
   "packs": [
     {
       "id": "engels-h1-v1",
-      "profile": "VOORNAAM",
+      "profile": "Jake",
       "collections": [
         {
           "type": "quiz",
