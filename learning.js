@@ -144,7 +144,10 @@
  function setResult(known){
    const s=session;if(!s||s.stage!=='run')return;
    const number=s.queue[s.index];
-   if(!s.seen.has(number)){s.seen.add(number);if(known)s.firstPassCorrect++;}
+   if(!s.seen.has(number)){
+     s.seen.add(number);if(known)s.firstPassCorrect++;
+     window.sfReview?.record({pack:s.pack,index:number,item:originalQuestion(),quality:known?2:0,mode:s.kind==='guided'?'leer-in-stappen':'leg-het-uit'});
+   }
    if(s.kind==='recall'&&!known&&!s.retried.has(number)){
      s.retried.add(number);s.queue.push(number);
    }

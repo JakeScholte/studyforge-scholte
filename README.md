@@ -75,3 +75,11 @@ https://jakescholte.github.io/studyforge-scholte/
 ## Later
 
 Veilige authenticatie, een eigen Supabase-database met RLS, ouderrechten, back-up en synchronisatie. Het afzonderlijk aangeleverde 3D-professorlogo kan later worden toegevoegd.
+
+## Slim herhalen (zonder database)
+
+Na een oefentoets, flashcard of leeropdracht wordt per vraag een herhaalmoment gepland. In **Slim herhalen** maakt Jake een korte ronde met maximaal twaalf open herhaalvragen en beoordeelt zichzelf als **nog niet**, **bijna** of **goed**. Het dashboard laat zien welke vragen aan de beurt zijn en wat vandaag geoefend is.
+
+Praktische startintervallen: fout → ongeveer 20 minuten; gedeeltelijk → 1 dag; goed → 3, 7, 14, 30, 60 dagen bij opeenvolgende goede beoordelingen. De intervallen zijn indicatief en vormen geen examencijfer-voorspelling.
+
+Bestaande quizscores en flashcardresultaten blijven ongewijzigd; bij eerste aanmelding leest de herhaalmotor ze eenmalig als uitgangspunt. Herhaalgegevens worden apart opgeslagen in `studyforge-scholte-reviews-v1` (browser-localStorage). Wissen van browsergegevens wist ook deze planning. **Nog geen synchronisatie, ouderautorisatie of echte beveiligde login.**

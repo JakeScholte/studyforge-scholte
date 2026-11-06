@@ -65,6 +65,7 @@ function render(){
  ['dashboard','home','Start'],
  ['learning-guided','book','Leer in stappen'],
  ['learning-recall','spark','Leg het uit'],
+ ['review','refresh','Slim herhalen'],
  ['quizzes','exam','Oefentoetsen'],
  ['flashcards','cards','Flashcards'],
  ['library','library','Lesmateriaal'],
@@ -152,6 +153,8 @@ function routeContent(){
  if(state.route==='learning-guided')return window.sfLearning.catalog('guided');
  if(state.route==='learning-recall')return window.sfLearning.catalog('recall');
  if(state.route==='learning-run')return window.sfLearning.render();
+ if(state.route==='review')return window.sfReview.catalog();
+ if(state.route==='review-run')return window.sfReview.runner();
  if(state.route==='library')return libraryContent();
  if(state.route==='progress')return progressContent();
  if(state.route==='planning')return window.studyPlanContent()+sfManualExamForm();
@@ -166,6 +169,7 @@ function routeContent(){
 function moreContent(){
  const list=[
  ['learning-recall','spark','Leg het uit','Test wat je zelf weet'],
+ ['review','refresh','Slim herhalen','Herhaalvragen voor vandaag'],
  ['planning','target','Mijn planning','Toetsen en doelen'],
  ['progress','chart','Mijn voortgang','Je scores bekijken'],
  ['library','library','Lesmateriaal','Alle onderwerpen'],
@@ -200,6 +204,7 @@ function dashboardContent(){
    <div class="sf-hero-graphic" aria-hidden="true"><div class="sf-orbit-ring"></div>
      <span class="sf-hero-star sf-a">✳</span><span class="sf-hero-star sf-b">✦</span><span class="sf-hero-symbol">J<span>↗</span></span></div>
   </section>
+  ${window.sfReview?.dashboard?.()||""}
   <div class="sf-home-section-title"><div><span class="sf-eyebrow">JOUW STUDY MODES</span>
     <h2>Hoe wil je vandaag leren?</h2><p>Vier manieren, steeds met dezelfde lesstof. Wissel ze af voor het beste resultaat.</p></div>
     <span class="sf-four-mark">4 <small>manieren</small></span></div>
@@ -283,7 +288,7 @@ function flashContent(){
  const id=f.order[f.index];const card=f.content.cards[id];
  return `<div class="page-enter focus-page flash-page"><button class="back-link" data-action="nav" data-route="flashcards">${ic('back',18)} Terug naar flashcards</button><div class="focus-header"><div><div class="eyebrow">${htmlEscape(f.pack.subject)} <span class="bullet">·</span> FLASHCARDS</div><h2>${htmlEscape(f.pack.title)}</h2></div><span class="step-count">Kaart ${f.index+1} <span>/ ${f.order.length}</span></span></div><div class="step-bar"><div style="width:${f.index/f.order.length*100}%"></div></div><button class="flip-card ${f.flipped?'flipped':''}" data-action="flip"><span class="flip-inner"><span class="flip-label">${f.flipped?'ANTWOORD':'VRAAG'}</span><span class="flip-text">${htmlEscape(f.flipped?card.back:card.front)}</span><span class="flip-tip">${ic('refresh',17)} Tik om ${f.flipped?'de vraag':'het antwoord'} te zien</span></span></button><div class="flash-controls">${f.flipped?`<button class="btn btn-red" data-action="rate-flash" data-known="0">${ic('refresh',18)} Nog oefenen</button><button class="btn btn-primary" data-action="rate-flash" data-known="1">${ic('check',18)} Ik weet het!</button>`:`<button class="btn btn-secondary" data-action="flip">Draai kaart om ${ic('arrow',18)}</button>`}</div></div>`;
 }
-async function selectProfile(id){state.profile=id;await refreshDashboard();await window.studyBeforeRoute?.('dashboard');state.route='dashboard';render();}
+async function selectProfile(id){state.profile=id;await refreshDashboard();window.sfReview?.importLegacy();await window.studyBeforeRoute?.('dashboard');state.route='dashboard';render();}
 async function refreshDashboard(){if(!state.profile)return;state.dashboard=await api('dashboard',null,{profile:state.profile});}
 async function navigate(route){if(!state.profile){state.route='choose';render();return;}if(route==='dashboard'||route==='progress')await refreshDashboard();if(['planning','ready','parent','dashboard'].includes(route))await window.studyBeforeRoute?.(route);state.route=route;render();window.scrollTo({top:0,behavior:'instant'});}
 async function openPack(id){
@@ -344,11 +349,13 @@ async function practiceMistakes(){
 async function finishQuiz(){
  const q=state.quiz;
  const r=await api('save_quiz',{profile:state.profile,collection_id:q.pack.id,answers:q.answers,mode:q.isMistakes?'mistakes':'all',indices:q.indices});
+ for(const d of r.details||[]){const item=q.content.questions[d.index];if(item)window.sfReview?.record({pack:q.pack,index:d.index,item,quality:d.correct?2:0,mode:'oefentoets'});}
  q.result=r;await refreshDashboard();state.route='quiz-result';render();window.scrollTo(0,0);
 }
 async function flashRate(known){
  const f=state.flash;const cardIndex=f.order[f.index];
  await api('flash_review',{profile:state.profile,collection_id:f.pack.id,index:cardIndex,known});
+ window.sfReview?.record({pack:f.pack,index:cardIndex,item:f.content.cards[cardIndex],quality:known?2:0,mode:'flashcards'});
  if(known)f.sessionKnown++;f.index++;f.flipped=false;
  if(f.index===f.order.length)await refreshDashboard();render();
 }
@@ -357,6 +364,7 @@ document.addEventListener('click',async ev=>{
  const btn=ev.target.closest('[data-action]');if(!btn||btn.disabled)return;
  const action=btn.dataset.action;
  try {
+  if(action.startsWith('review-')){await window.sfReview.handle(action,btn);return;}
   if(action.startsWith('learn-')){await window.sfLearning.handle(action,btn);return;}
   if(action.startsWith('study-')){await window.studyHandleAction(action,btn);return;}
   switch(action){
