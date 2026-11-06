@@ -22,8 +22,7 @@ async function spLoad(profile){
  const published=(window.STUDYFORGE_PUBLISHED_EXAMS||[]).filter(e=>e.profile===name);
  let changed=false;
  for(const e of published){
-   const item={id:e.id,title:e.title,subject:e.subject,date:e.date,
-     targetGrade:Number(e.targetGrade)>0&&Number(e.targetGrade)<=10?Number(e.targetGrade):Number(val.goals.targetGrade||7)};
+   const item={id:e.id,title:e.title,subject:e.subject,date:e.date,targetGrade:Number(e.targetGrade)>0&&Number(e.targetGrade)<=10?Number(e.targetGrade):Number(val.goals.targetGrade||7)};
    const i=val.exams.findIndex(x=>x.id===item.id);
    if(i<0){val.exams.push(item);changed=true;}
    else if(JSON.stringify(val.exams[i])!==JSON.stringify(item)){val.exams[i]=item;changed=true;}
@@ -133,7 +132,7 @@ function studyReadyContent(){
 }
 function studyParentContent(){
  if(!spParentData)return '<div class="page-enter">'+sectionHeading('OVERZICHT','Ouderoverzicht','Gegevens ophalen...')+'</div>';
- return '<div class="page-enter">'+sectionHeading('VOOR HET GEZIN','Ouderoverzicht','De resultaten en komende toetsen van alle ingestelde leerlingen op één plek.')+
+ return '<div class="page-enter">'+sectionHeading('VOOR HET GEZIN','Ouderoverzicht','De resultaten en komende toetsen van de ingestelde leerlingen op één plek.')+
  '<div class="study-parent-grid">'+spParentData.map(p=>{
    const recent=p.dashboard.attempts||[],grades=recent.map(a=>Number(a.grade)),average=grades.length?grades.reduce((a,b)=>a+b,0)/grades.length:null;
    const upcoming=spDueExams(p.plan.exams);
@@ -146,12 +145,12 @@ function studyParentContent(){
  }).join('')+'</div><p class="study-muted">Resultaten worden voorlopig in deze browser bewaard. Synchronisatie tussen apparaten komt beschikbaar zodra Supabase met een gezinsaccount is gekoppeld.</p></div>';
 }
 async function sfAddExamAction(){
- const title=String(document.getElementById("sf-exam-title")?.value||"").trim();
- const subject=String(document.getElementById("sf-exam-subject")?.value||"").trim();
- const date=String(document.getElementById("sf-exam-date")?.value||"").trim();
- if(!title||title.length>120||!subject||subject.length>80||!/^\d{4}-\d{2}-\d{2}$/.test(date)||date<spDate()||Number.isNaN(Date.parse(date+"T12:00:00"))){toast("Vul een geldige titel, vak en toekomstige datum in.",true);return;}
- spCurrent.exams.push({id:"local-exam-"+Date.now()+"-"+Math.random().toString(36).slice(2,7),title,subject,date,targetGrade:Number(spCurrent.goals?.targetGrade||7)});
- await spSave(state.profile,spCurrent);render();toast("Toets opgeslagen.");
+ const title=String(document.getElementById('sf-exam-title')?.value||'').trim();
+ const subject=String(document.getElementById('sf-exam-subject')?.value||'').trim();
+ const date=String(document.getElementById('sf-exam-date')?.value||'').trim();
+ if(!title||title.length>120||!subject||subject.length>80||!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(date)||date<spDate()||Number.isNaN(Date.parse(date+'T12:00:00'))){toast('Vul een titel, vak en geldige toekomstige datum in.',true);return;}
+ spCurrent.exams.push({id:'local-exam-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),title,subject,date,targetGrade:Number(spCurrent.goals?.targetGrade||7)});
+ await spSave(state.profile,spCurrent);render();toast('Toets opgeslagen.');
 }
 async function studyHandleAction(action,btn){
  if(action==='study-add-exam')return await sfAddExamAction();

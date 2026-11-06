@@ -56,7 +56,7 @@ async function boot() {
   state.route='choose';state.profile=null;state.dashboard=null;render();
 }
 function renderFatal(message) {$('#app').innerHTML=`<div class="fatal"><h1>We kunnen StudyForge niet openen.</h1><p>${htmlEscape(message)}</p><button class="btn btn-primary" data-action="reload">Opnieuw proberen</button></div>`;}
-function brand(){return `<div class="brand"><span class="brand-glyph">${ic("book",25)}</span><span>STUDY<span class="brand-accent">FORGE</span> <span class="sf-brand-family">SCHOLTE</span></span></div>`;}
+function brand(){return `<div class="brand"><span class="brand-glyph">${ic('book',25)}</span><span>STUDY<span class="brand-accent">FORGE</span> <span class="sf-brand-family">SCHOLTE</span></span></div>`;}
 function profileName() {return state.profiles.find(x=>+x.id===+state.profile)?.name||'';}
 function sectionHeading(kicker,title,desc='') {return `<div class="section-heading"><div><div class="eyebrow">${htmlEscape(kicker)}</div><h1>${htmlEscape(title)}</h1>${desc?`<p class="sub">${htmlEscape(desc)}</p>`:''}</div></div>`;}
 function render(){
@@ -66,16 +66,18 @@ function render(){
   const navItems=[['dashboard','home','Dashboard'],['quizzes','exam','Oefentoetsen'],['flashcards','cards','Flashcards'],['progress','chart','Progressie'],['library','library','Bibliotheek'],['planning','book','Mijn toetsen'],['ready','spark','Toetsklaar'],['parent','chart','Ouderoverzicht']];
   $('#app').innerHTML=`<div class="app-layout"><aside class="sidebar">${brand()}<div class="sidebar-label">JOUW LEEROMGEVING</div><nav class="nav-list">${navItems.map(([r,i,t])=>`<button class="nav-link ${state.route===r?'active':''}" data-action="nav" data-route="${r}">${ic(i)}<span>${t}</span>${state.route===r?`<span class="nav-active-dot"></span>`:''}</button>`).join('')}</nav><div class="sidebar-bottom"><button class="nav-link" data-action="change-profile">${ic('swap')}<span>Wissel profiel</span></button><button class="nav-link" data-action="logout">${ic('lock')}<span>${window.sfMode()==='supabase'?'Uitloggen':'Startscherm'}</span></button><div class="tiny sidebar-foot">STUDYFORGE SCHOLTE</div></div></aside><div class="main-column"><header class="topbar"><button class="mobile-brand" data-action="change-profile">${ic('swap',18)} ${brand()}</button><span class="topbar-breadcrumb">STUDYFORGE <span>/</span> ${htmlEscape(state.route==='dashboard'?'OVERZICHT':state.route.toUpperCase())}</span><div class="topbar-right"><span class="online-indicator"></span><span class="online-text">${window.sfMode()==='shared'?(window.sfCloud?.online?'Cloudopslag':'Lokaal opgeslagen · cloud offline'):window.sfMode()==='supabase'?'Cloudopslag':'Lokaal opgeslagen'}</span><button class="profile-chip" data-action="change-profile"><span class="avatar small ${profileName().toLowerCase()}">${htmlEscape(profileName()[0])}</span><span>${htmlEscape(profileName())}</span>${ic('swap',15)}</button></div></header><main class="main-content">${routeContent()}</main><nav class="bottom-nav">${navItems.slice(0,4).map(([r,i,t])=>`<button class="bottom-link ${state.route===r?'active':''}" data-action="nav" data-route="${r}">${ic(i,21)}<span>${t==='Oefentoetsen'?'Toetsen':t}</span></button>`).join('')}<button class="bottom-link ${state.route==='more'?'active':''}" data-action="nav" data-route="more">${ic('menu',21)}<span>Meer</span></button></nav></div></div>`;
 }
-function renderUnlock(){state.route="choose";renderChoose();}
+function renderUnlock(){state.route='choose';renderChoose();}
+
 function renderChoose(){
- const edit=state.profiles.find(p=>Number(p.id)===Number(state.editingProfile));
- const cards=state.profiles.map(p=>`<div class="sf-profile-item"><button class="pick-card" data-action="select-profile" data-id="${Number(p.id)}"><span class="pick-avatar">${htmlEscape(p.name.charAt(0).toUpperCase())}</span><span class="pick-details"><span class="pick-name">${htmlEscape(p.name)}</span><span class="pick-sub">${htmlEscape([p.level,p.year&&"Leerjaar "+p.year].filter(Boolean).join(" · ")||"Open mijn dashboard")}</span></span><span class="pick-arrow">${ic("arrow",18)}</span></button><button class="sf-edit-profile" data-action="profile-edit" data-id="${Number(p.id)}" type="button">Profiel bewerken</button></div>`).join("");
- $("#app").innerHTML=`<main class="welcome-shell sf-welcome"><div class="welcome-orb one"></div><div class="welcome-orb two"></div><div class="welcome-content sf-welcome-inner">${brand()}<div class="welcome-copy"><div class="eyebrow"><span class="eyebrow-line"></span> STUDYFORGE SCHOLTE</div><h1>Jouw tempo.<br><span class="gradient-text">Jouw progressie.</span></h1><p class="welcome-lead">Flashcards, oefentoetsen en voortgang voor het gezin Scholte.</p></div><div class="sf-welcome-grid"><section class="sf-welcome-section"><h2>Wie gaat er vandaag leren?</h2>${cards?`<div class="sf-profile-list">${cards}</div>`:'<p class="sf-muted">Nog geen leerlingen ingesteld. Voeg je eerste profiel toe.</p>'}</section><section class="sf-welcome-section"><h2>${edit?"Profiel bewerken":"Leerling toevoegen"}</h2><form id="sfProfileForm" class="sf-profile-form"><label>Voornaam<input id="sf-name" autocomplete="off" required maxlength="40" value="${htmlEscape(edit?.name||"")}" placeholder="Voornaam"></label><label>Schoolniveau<input id="sf-level" maxlength="50" value="${htmlEscape(edit?.level||"")}" placeholder="Bijv. havo"></label><label>Leerjaar<input id="sf-year" maxlength="20" value="${htmlEscape(edit?.year||"")}" placeholder="Bijv. 2"></label><label>Vakken (gescheiden door komma's)<input id="sf-subjects" maxlength="240" value="${htmlEscape((edit?.subjects||[]).join(", "))}" placeholder="Engels, wiskunde"></label><div class="sf-profile-buttons"><button type="submit" class="btn btn-primary">${edit?"Wijzigingen opslaan":"Profiel toevoegen"}</button>${edit?'<button type="button" class="btn btn-outline" data-action="profile-cancel">Annuleren</button>':""}</div></form></section></div><p class="sf-local-disclaimer">Lokale proefversie: gegevens staan alleen in deze browser op dit apparaat. Er is nog geen beveiligde login, back-up of synchronisatie tussen apparaten.</p></div></main>`;
+ const edit=state.profiles.find(p=>p.id===Number(state.editingProfile));
+ const cards=state.profiles.map(p=>`<div class="sf-profile-item"><button class="pick-card" data-action="select-profile" data-id="${Number(p.id)}"><span class="pick-avatar">${htmlEscape(p.name.charAt(0).toUpperCase())}</span><span class="pick-details"><span class="pick-name">${htmlEscape(p.name)}</span><span class="pick-sub">${htmlEscape([p.level,p.year&&'Leerjaar '+p.year].filter(Boolean).join(' · ')||'Open mijn dashboard')}</span></span><span class="pick-arrow">${ic('arrow',18)}</span></button><button type="button" class="sf-edit-profile" data-action="profile-edit" data-id="${Number(p.id)}">Profiel bewerken</button></div>`).join('');
+ $('#app').innerHTML=`<main class="welcome-shell sf-welcome"><div class="welcome-orb one"></div><div class="welcome-orb two"></div><div class="welcome-content sf-welcome-inner">${brand()}<div class="welcome-copy"><div class="eyebrow">PERSOONLIJKE LEEROMGEVING · SCHOLTE</div><h1>Jouw tempo.<br><span class="gradient-text">Jouw progressie.</span></h1><p class="welcome-lead">Oefentoetsen, flashcards, cijfers en planning op één plek.</p></div><div class="sf-welcome-grid"><section class="sf-welcome-section"><h2>Wie gaat er vandaag leren?</h2>${cards?`<div class="sf-profile-list">${cards}</div>`:'<p class="sf-muted">Er zijn nog geen leerlingen. Voeg hiernaast het eerste profiel toe.</p>'}</section><section class="sf-welcome-section"><h2>${edit?'Profiel bewerken':'Leerling toevoegen'}</h2><form id="sfProfileForm" class="sf-profile-form"><label>Voornaam<input id="sf-name" autocomplete="off" required maxlength="40" value="${htmlEscape(edit?.name||'')}" placeholder="Voornaam"></label><label>Schoolniveau<input id="sf-level" maxlength="50" value="${htmlEscape(edit?.level||'')}" placeholder="Bijv. havo"></label><label>Leerjaar<input id="sf-year" maxlength="20" value="${htmlEscape(edit?.year||'')}" placeholder="Bijv. 2"></label><label>Vakken (komma's ertussen)<input id="sf-subjects" maxlength="240" value="${htmlEscape((edit?.subjects||[]).join(', '))}" placeholder="Engels, wiskunde, Nederlands"></label><div class="sf-profile-buttons"><button class="btn btn-primary" type="submit">${edit?'Wijzigingen opslaan':'Profiel toevoegen'}</button>${edit?'<button class="btn btn-outline" type="button" data-action="profile-cancel">Annuleren</button>':''}</div></form></section></div><p class="sf-local-disclaimer">Proefversie zonder database: de profielen en voortgang staan alleen in deze browser. Er is nog geen login, back-up of synchronisatie.</p></div></main>`;
 }
 function requestProfilePin(id){return selectProfile(Number(id));}
 function renderProfilePin(){return renderChoose();}
+
 function sfManualExamForm(){
- return `<section class="study-panel sf-manual-exam"><h2>Toets toevoegen</h2><p>De toets wordt alleen op dit apparaat bewaard.</p><div class="sf-profile-form sf-exam-grid"><label>Naam van de toets<input id="sf-exam-title" maxlength="120" placeholder="Bijv. hoofdstuk 3"></label><label>Vak<input id="sf-exam-subject" maxlength="80" placeholder="Bijv. Engels"></label><label>Datum<input id="sf-exam-date" type="date"></label></div><button type="button" class="study-button" data-action="study-add-exam">Toets opslaan</button></section>`;
+ return `<section class="study-panel sf-manual-exam"><h2>Nieuwe toets plannen</h2><p>De toets wordt lokaal opgeslagen voor dit leerlingprofiel.</p><div class="sf-profile-form sf-exam-grid"><label>Titel<input id="sf-exam-title" maxlength="120" placeholder="Hoofdstuk 3"></label><label>Vak<input id="sf-exam-subject" maxlength="80" placeholder="Engels"></label><label>Datum<input id="sf-exam-date" type="date"></label></div><button type="button" class="study-button" data-action="study-add-exam">Toets toevoegen</button></section>`;
 }
 function routeContent(){
   if(state.route==='dashboard') return dashboardContent();
@@ -272,18 +274,14 @@ document.addEventListener('click',async ev=>{
  }catch(e){handleError(e);}
 });
 document.addEventListener('submit',async ev=>{
- if(ev.target.id!=='sfProfileForm')return;
- ev.preventDefault();
+ if(ev.target.id!=='sfProfileForm')return;ev.preventDefault();
  try{
-   window.sfUpsertProfile({id:state.editingProfile,name:document.querySelector('#sf-name')?.value,
-     level:document.querySelector('#sf-level')?.value,year:document.querySelector('#sf-year')?.value,
-     subjects:document.querySelector('#sf-subjects')?.value});
-   state.editingProfile=null;
-   state.profiles=(await api('bootstrap')).profiles;
-   await window.sfSyncPublished?.();
-   render();
-   toast('Leerlingprofiel opgeslagen.');
- }catch(e){handleError(e);}
+  window.sfUpsertProfile({id:state.editingProfile,name:document.querySelector('#sf-name')?.value,level:document.querySelector('#sf-level')?.value,year:document.querySelector('#sf-year')?.value,subjects:document.querySelector('#sf-subjects')?.value});
+  state.editingProfile=null;
+  state.profiles=(await api('bootstrap')).profiles;
+  await window.sfSyncPublished?.();
+  render();toast('Leerlingprofiel opgeslagen.');
+ }catch(e){handleError(e)}
 });
 document.addEventListener('input',ev=>{
  if(ev.target.id==='open-text'&&state.quiz)state.quiz.answers[state.quiz.index].typed=ev.target.value;

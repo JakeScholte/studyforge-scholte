@@ -21,7 +21,7 @@
       const panel = document.createElement('div');
       panel.className = 'sf-audio-panel';
       const note = document.createElement('p');
-      note.textContent = 'Luister naar de oefentekst. De stem is afhankelijk van je apparaat.';
+      note.textContent = 'Luister naar deze oefentekst. De stem is afhankelijk van je apparaat.';
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'btn btn-secondary';

@@ -1,27 +1,29 @@
 /* StudyForge data layer: local browser storage by default, optional Supabase Auth + RLS. */
 'use strict';
+
 function sfReadProfiles(){
- try{
-  const items=JSON.parse(localStorage.getItem("studyforge-scholte-profiles-v1")||"[]");
-  if(Array.isArray(items))return items.filter(p=>p&&Number.isInteger(p.id)&&p.id>0&&typeof p.name==="string"&&p.name.trim()).slice(0,12);
- }catch(e){console.warn("Leerlingprofielen niet beschikbaar",e);}
+ try {
+   const p=JSON.parse(localStorage.getItem('studyforge-scholte-profiles-v1')||'[]');
+   if(Array.isArray(p))return p.filter(x=>x&&Number.isInteger(x.id)&&x.id>0&&typeof x.name==='string'&&x.name.trim()).slice(0,12);
+ }catch(e){console.warn('Leerlingprofielen niet bereikbaar',e)}
  return [];
 }
-const SF_PROFILES = sfReadProfiles();
+const SF_PROFILES=sfReadProfiles();
 function sfUpsertProfile(x){
- const name=String(x.name||"").trim(),level=String(x.level||"").trim(),year=String(x.year||"").trim();
- const subjects=String(x.subjects||"").split(",").map(s=>s.trim()).filter(Boolean).slice(0,20);
- if(!name||name.length>40||level.length>50||year.length>20)throw Error("Controleer de profielgegevens.");
- const index=SF_PROFILES.findIndex(p=>p.id===Number(x.id));
- if(SF_PROFILES.some((p,i)=>i!==index&&p.name.toLocaleLowerCase("nl")===name.toLocaleLowerCase("nl")))throw Error("Deze leerling bestaat al.");
- if(index<0&&SF_PROFILES.length>=12)throw Error("Maximaal twaalf leerlingen.");
- const next=SF_PROFILES.slice(),item={id:index>=0?Number(x.id):Math.max(0,...SF_PROFILES.map(p=>p.id))+1,name,level,year,subjects};
- if(index<0)next.push(item);else next[index]=item;
- try{localStorage.setItem("studyforge-scholte-profiles-v1",JSON.stringify(next));}catch(e){throw Error("Profiel niet opgeslagen; controleer de browseropslag.");}
- SF_PROFILES.splice(0,SF_PROFILES.length,...next);
- return item;
+ const name=String(x.name||'').trim(),level=String(x.level||'').trim(),year=String(x.year||'').trim();
+ const subjects=String(x.subjects||'').split(',').map(s=>s.trim()).filter(Boolean).slice(0,20);
+ if(!name||name.length>40||level.length>50||year.length>20)throw Error('Controleer de profielgegevens.');
+ const idx=SF_PROFILES.findIndex(p=>p.id===Number(x.id));
+ if(SF_PROFILES.some((p,i)=>i!==idx&&p.name.toLowerCase()===name.toLowerCase()))throw Error('Deze leerling bestaat al.');
+ if(idx<0&&SF_PROFILES.length>=12)throw Error('Maximaal 12 leerlingen.');
+ const profiles=SF_PROFILES.slice(),record={id:idx>=0?Number(x.id):Math.max(0,...profiles.map(p=>p.id))+1,name,level,year,subjects};
+ if(idx<0)profiles.push(record);else profiles[idx]=record;
+ try{localStorage.setItem('studyforge-scholte-profiles-v1',JSON.stringify(profiles))}
+ catch(e){throw Error('Opslaan mislukt; controleer browseropslag.')}
+ SF_PROFILES.splice(0,SF_PROFILES.length,...profiles);
+ return record;
 }
-window.sfUpsertProfile = sfUpsertProfile;
+window.sfUpsertProfile=sfUpsertProfile;
 const SF_CONFIG = window.STUDYFORGE_SUPABASE || {};
 const SF_CLOUD = !!(SF_CONFIG.sharedMode && SF_CONFIG.url && (SF_CONFIG.publishableKey || SF_CONFIG.anonKey));
 const SF_REMOTE = !!(!SF_CONFIG.sharedMode && SF_CONFIG.url && (SF_CONFIG.publishableKey || SF_CONFIG.anonKey));
@@ -89,6 +91,7 @@ async function sfSyncPublished(){
     const content=await response.text();
     if(content.length>1800000)throw Error('De gepubliceerde bibliotheek is te groot.');
     const library=JSON.parse(content);
+
     if(library?.schema!=='studyforge-library/v1'||!Array.isArray(library.packs))throw Error('Ongeldig bibliotheekformaat.');
     if(library.packs.length>200)throw Error('Te veel lespakketten.');
     // Alleen deze gepubliceerde toetsdata mag de planning vullen;
