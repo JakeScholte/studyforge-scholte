@@ -83,3 +83,7 @@ Na een oefentoets, flashcard of leeropdracht wordt per vraag een herhaalmoment g
 Praktische startintervallen: fout → ongeveer 20 minuten; gedeeltelijk → 1 dag; goed → 3, 7, 14, 30, 60 dagen bij opeenvolgende goede beoordelingen. De intervallen zijn indicatief en vormen geen examencijfer-voorspelling.
 
 Bestaande quizscores en flashcardresultaten blijven ongewijzigd; bij eerste aanmelding leest de herhaalmotor ze eenmalig als uitgangspunt. Herhaalgegevens worden apart opgeslagen in `studyforge-scholte-reviews-v1` (browser-localStorage). Wissen van browsergegevens wist ook deze planning. **Nog geen synchronisatie, ouderautorisatie of echte beveiligde login.**
+
+## Motiverende drillsergeant
+
+Op Jake's dashboard staat een grappige motivatiekaart met een geoptimaliseerde AVIF-illustratie van 6,5 kB. De kaart verwijst naar de leermethoden zonder bestaande resultaten te veranderen. Afbeelding: `assets/drillsergeant-jake.avif`, stijl: `motivator.css`.

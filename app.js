@@ -204,6 +204,17 @@ function dashboardContent(){
    <div class="sf-hero-graphic" aria-hidden="true"><div class="sf-orbit-ring"></div>
      <span class="sf-hero-star sf-a">✳</span><span class="sf-hero-star sf-b">✦</span><span class="sf-hero-symbol">J<span>↗</span></span></div>
   </section>
+
+  <section class="sf-motivator-card" aria-label="Motivatie van de drillsergeant">
+    <img class="sf-motivator-illustration" src="./assets/drillsergeant-jake.avif" width="320" height="240"
+      loading="lazy" decoding="async" alt="Grappige drillsergeant moedigt Jake aan: Kom op Jake, aan de slag! Jij kunt dit!">
+    <div class="sf-motivator-copy">
+      <span class="sf-eyebrow">✦ JOUW MOTIVATOR</span>
+      <h2>Geen uitstel, Jake. Tijd om te scoren! 😄</h2>
+      <p>Je hoeft niet alles in één keer te kennen. Begin met een kleine stap, en de rest volgt.</p>
+      <button class="btn btn-primary" type="button" data-action="nav" data-route="learning-guided">Kies je leerstof →</button>
+    </div>
+  </section>
   ${window.sfReview?.dashboard?.()||""}
   <div class="sf-home-section-title"><div><span class="sf-eyebrow">JOUW STUDY MODES</span>
     <h2>Hoe wil je vandaag leren?</h2><p>Vier manieren, steeds met dezelfde lesstof. Wissel ze af voor het beste resultaat.</p></div>

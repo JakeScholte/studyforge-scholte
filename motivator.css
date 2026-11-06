@@ -1,0 +1,15 @@
+/* StudyForge Jake: vrolijke drillsergeant */
+.sf-motivator-card{display:flex;align-items:center;gap:clamp(18px,3vw,36px);margin:22px 0 0;padding:15px 27px 15px 16px;background:linear-gradient(110deg,#f3edff,#fff1cc);border:1px solid #ded8f5;border-radius:25px;box-shadow:0 12px 28px #2b315615;overflow:hidden;color:#232e51}
+.sf-motivator-illustration{display:block;flex:0 0 min(35%,320px);width:min(35%,320px);height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:17px;box-shadow:0 8px 18px #15224921}
+.sf-motivator-copy{flex:1;min-width:0;padding:10px 0}
+.sf-motivator-copy .sf-eyebrow{color:#7957b8}
+.sf-motivator-copy h2{font-size:clamp(19px,2.4vw,31px);font-weight:900;letter-spacing:-.04em;line-height:1.15;color:#273256;margin:10px 0}
+.sf-motivator-copy p{font-size:13px;line-height:1.6;color:#62708a;margin:0 0 16px;max-width:610px}
+.sf-motivator-copy .btn{font-size:12px;min-height:40px;padding:10px 16px}
+@media(max-width:620px){
+ .sf-motivator-card{flex-direction:column;align-items:stretch;gap:13px;padding:13px;border-radius:19px;margin-top:15px}
+ .sf-motivator-illustration{flex:none;width:100%;max-width:420px;height:auto;align-self:center;border-radius:13px}
+ .sf-motivator-copy{padding:3px 8px 8px;text-align:left}
+ .sf-motivator-copy h2{font-size:22px;margin:8px 0}
+ .sf-motivator-copy p{font-size:12px}
+}
