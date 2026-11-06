@@ -132,7 +132,7 @@ function studyReadyContent(){
 }
 function studyParentContent(){
  if(!spParentData)return '<div class="page-enter">'+sectionHeading('OVERZICHT','Ouderoverzicht','Gegevens ophalen...')+'</div>';
- return '<div class="page-enter">'+sectionHeading('VOOR HET GEZIN','Ouderoverzicht','De resultaten en komende toetsen van de ingestelde leerlingen op één plek.')+
+ return '<div class="page-enter">'+sectionHeading('VOOR HET GEZIN','Ouderoverzicht','De resultaten en komende toetsen van Jake op één plek.')+
  '<div class="study-parent-grid">'+spParentData.map(p=>{
    const recent=p.dashboard.attempts||[],grades=recent.map(a=>Number(a.grade)),average=grades.length?grades.reduce((a,b)=>a+b,0)/grades.length:null;
    const upcoming=spDueExams(p.plan.exams);
