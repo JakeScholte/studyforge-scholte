@@ -60,38 +60,49 @@ function brand(){return `<div class="brand"><span class="brand-glyph">${ic('book
 function profileName() {return state.profiles.find(x=>+x.id===+state.profile)?.name||'';}
 function sectionHeading(kicker,title,desc='') {return `<div class="section-heading"><div><div class="eyebrow">${htmlEscape(kicker)}</div><h1>${htmlEscape(title)}</h1>${desc?`<p class="sub">${htmlEscape(desc)}</p>`:''}</div></div>`;}
 function render(){
-  if(state.route==='unlock'){renderUnlock();return;}
-  if(state.route==='choose'){renderChoose();return;}
-  if(state.route==='profile-pin'){renderProfilePin();return;}
-  const navItems=[['dashboard','home','Dashboard'],['quizzes','exam','Oefentoetsen'],['flashcards','cards','Flashcards'],['progress','chart','Progressie'],['library','library','Bibliotheek'],['planning','book','Mijn toetsen'],['ready','spark','Toetsklaar'],['parent','chart','Ouderoverzicht']];
-  $('#app').innerHTML=`<div class="app-layout"><aside class="sidebar">${brand()}<div class="sidebar-label">JOUW LEEROMGEVING</div><nav class="nav-list">${navItems.map(([r,i,t])=>`<button class="nav-link ${state.route===r?'active':''}" data-action="nav" data-route="${r}">${ic(i)}<span>${t}</span>${state.route===r?`<span class="nav-active-dot"></span>`:''}</button>`).join('')}</nav><div class="sidebar-bottom"><button class="nav-link" data-action="change-profile">${ic('swap')}<span>Startscherm</span></button><button class="nav-link" data-action="logout">${ic('lock')}<span>${window.sfMode()==='supabase'?'Uitloggen':'Startscherm'}</span></button><div class="tiny sidebar-foot">STUDYFORGE SCHOLTE</div></div></aside><div class="main-column"><header class="topbar"><button class="mobile-brand" data-action="change-profile">${ic('swap',18)} ${brand()}</button><span class="topbar-breadcrumb">STUDYFORGE <span>/</span> ${htmlEscape(state.route==='dashboard'?'OVERZICHT':state.route.toUpperCase())}</span><div class="topbar-right"><span class="online-indicator"></span><span class="online-text">${window.sfMode()==='shared'?(window.sfCloud?.online?'Cloudopslag':'Lokaal opgeslagen · cloud offline'):window.sfMode()==='supabase'?'Cloudopslag':'Lokaal opgeslagen'}</span><button class="profile-chip" data-action="change-profile"><span class="avatar small ${profileName().toLowerCase()}">${htmlEscape(profileName()[0])}</span><span>${htmlEscape(profileName())}</span>${ic('swap',15)}</button></div></header><main class="main-content">${routeContent()}</main><nav class="bottom-nav">${navItems.slice(0,4).map(([r,i,t])=>`<button class="bottom-link ${state.route===r?'active':''}" data-action="nav" data-route="${r}">${ic(i,21)}<span>${t==='Oefentoetsen'?'Toetsen':t}</span></button>`).join('')}<button class="bottom-link ${state.route==='more'?'active':''}" data-action="nav" data-route="more">${ic('menu',21)}<span>Meer</span></button></nav></div></div>`;
+ if(['choose','unlock','profile-pin'].includes(state.route)){if(state.route==='profile-pin')renderProfilePin();else renderChoose();return;}
+ const menu=[
+ ['dashboard','home','Start'],
+ ['learning-guided','book','Leer in stappen'],
+ ['learning-recall','spark','Leg het uit'],
+ ['quizzes','exam','Oefentoetsen'],
+ ['flashcards','cards','Flashcards'],
+ ['library','library','Lesmateriaal'],
+ ['progress','chart','Mijn voortgang'],
+ ['planning','target','Mijn planning'],
+ ['parent','chart','Ouderoverzicht']];
+ const active=menu.find(item=>item[0]===state.route)?.[2]||'Leren';
+ const mobile=[['dashboard','home','Start'],['learning-guided','book','Leren'],['quizzes','exam','Toetsen'],['flashcards','cards','Kaarten'],['more','menu','Meer']];
+ $('#app').innerHTML=`<div class="app-layout sf-app-shell">
+  <aside class="sidebar sf-sidebar">
+    <div class="sf-side-top">${brand()}<div class="sf-side-caption">JAKES STUDY LAB</div></div>
+    <div class="sf-side-section">MIJN WERKPLEK</div>
+    <nav class="sf-side-nav" aria-label="Navigatie">${menu.map(([route,icon,label])=>`<button class="sf-side-link ${state.route===route?'active':''}" data-action="nav" data-route="${route}">${ic(icon,21)}<span>${label}</span></button>`).join('')}</nav>
+    <div class="sf-side-bottom"><div class="sf-grade-box"><span class="sf-grade-symbol">✦</span><div><b>Jake Scholte</b><span>VMBO-T · leerjaar 4</span></div></div>
+      <button class="sf-side-logout" data-action="change-profile">${ic('lock',17)} Vergrendelen</button>
+      <small>Voortgang lokaal opgeslagen</small></div>
+  </aside>
+  <div class="main-column sf-main-column">
+    <header class="topbar sf-topbar"><div class="sf-top-title"><small>STUDYFORGE / ${htmlEscape(active.toUpperCase())}</small><strong>${htmlEscape(active)}</strong></div>
+      <span class="sf-top-tag">4 VMBO-T</span><button class="sf-top-avatar" data-action="change-profile" aria-label="Vergrendelen">J</button></header>
+    <main class="main-content sf-main-content">${routeContent()}</main>
+    <nav class="bottom-nav sf-mobile-nav" aria-label="Mobiele navigatie">${mobile.map(([route,icon,label])=>`<button class="bottom-link ${state.route===route?'active':''}" data-action="nav" data-route="${route}">${ic(icon,20)}<span>${label}</span></button>`).join('')}</nav>
+  </div></div>`;
 }
 function renderUnlock(){state.route='choose';renderChoose();}
 
 function renderChoose(){
- const p=state.profiles[0];
- if(!p){renderFatal('Leerlingprofiel niet beschikbaar.');return;}
- $('#app').innerHTML=`<main class="welcome-shell sf-welcome">
-   <div class="welcome-orb one"></div><div class="welcome-orb two"></div>
-   <div class="welcome-content sf-welcome-inner">
-     ${brand()}
-     <div class="welcome-copy">
-       <div class="eyebrow">STUDYFORGE SCHOLTE · JAKES LEEROMGEVING</div>
-       <h1>Hoi, ${htmlEscape(p.name)}<span class="accent-dot">.</span></h1>
-       <p class="welcome-lead">Jouw plek om gericht te leren, oefenen en groeien richting het vmbo-t-examen.</p>
-     </div>
-     <section class="sf-welcome-section sf-single-student">
-       <div class="eyebrow">JOUW PROFIEL</div>
-       <h2>${htmlEscape(p.name)} · ${htmlEscape(p.level.toUpperCase())} · leerjaar ${htmlEscape(p.year)}</h2>
-       <p class="sf-muted">Oefentoetsen, flashcards, toetsplanning en persoonlijke voortgang, allemaal voor jou.</p>
-       <button type="button" class="btn btn-primary sf-start-button" data-action="select-profile" data-id="${Number(p.id)}">Open mijn dashboard ${ic('arrow',18)}</button>
-     </section>
-     <p class="sf-local-disclaimer">Proefversie zonder database: voortgang wordt alleen in deze browser opgeslagen. Geen login, back-up of synchronisatie tussen apparaten.</p>
-   </div>
- </main>`;
+ const p=state.profiles[0];if(!p){renderFatal('Leerlingprofiel ontbreekt.');return;}
+ $('#app').innerHTML=`<main class="welcome-shell sf-gate-bg">
+ <div class="sf-gate-art" aria-hidden="true"><span>✳</span><span>✦</span></div>
+ <div class="sf-gate-shell">${brand()}<div class="sf-gate-card">
+   <span class="sf-eyebrow">JOUW DIGITALE STUDY LAB</span><h1>Hey, ${htmlEscape(p.name)}<span class="accent-dot">.</span></h1>
+   <p>Zo leer je slimmer voor je vmbo-t examen. Vier manieren om te leren, één plek voor je voortgang.</p>
+   <div class="sf-gate-profile"><span class="sf-gate-monogram">J</span><div><b>Jake Scholte</b><small>4e klas · VMBO-T</small></div></div>
+   <button class="btn btn-primary sf-wide-btn" data-action="select-profile" data-id="${Number(p.id)}">Open mijn Study Lab ${ic('arrow',18)}</button>
+ </div><div class="sf-gate-note">Lokale proefversie · Geen cloudopslag of beveiligde login</div></div></main>`;
 }
-// 4-cijferige UI-code, bedoeld als gemaksslot. Omdat dit een openbare statische
-// site is, biedt deze code GEEN beveiligde authenticatie of gegevensbescherming.
+// Dit is alleen een eenvoudige schermcode, geen echte authenticatie.
 const SF_LOCAL_PIN = '2011';
 function requestProfilePin(id){
  const target=Number(id);
@@ -135,24 +146,33 @@ function sfManualExamForm(){
  return `<section class="study-panel sf-manual-exam"><h2>Nieuwe toets plannen</h2><p>De toets wordt lokaal opgeslagen voor dit leerlingprofiel.</p><div class="sf-profile-form sf-exam-grid"><label>Titel<input id="sf-exam-title" maxlength="120" placeholder="Hoofdstuk 3"></label><label>Vak<input id="sf-exam-subject" maxlength="80" placeholder="Engels"></label><label>Datum<input id="sf-exam-date" type="date"></label></div><button type="button" class="study-button" data-action="study-add-exam">Toets toevoegen</button></section>`;
 }
 function routeContent(){
-  if(state.route==='dashboard') return dashboardContent();
-  if(state.route==='quizzes') return listContent('quiz');
-  if(state.route==='flashcards') return listContent('flashcards');
-  if(state.route==='library') return libraryContent();
-  if(state.route==='progress') return progressContent();
-  if(state.route==='planning') return window.studyPlanContent()+sfManualExamForm();
-  if(state.route==='ready') return window.studyReadyContent();
-  if(state.route==='parent') return window.studyParentContent();
-  if(state.route==='more') return moreContent();
-  if(state.route==='quiz-run') return quizContent();
-  if(state.route==='quiz-result') return quizResultContent();
-  if(state.route==='flash-run') return flashContent();
-  return dashboardContent();
+ if(state.route==='dashboard')return dashboardContent();
+ if(state.route==='quizzes')return listContent('quiz');
+ if(state.route==='flashcards')return listContent('flashcards');
+ if(state.route==='learning-guided')return window.sfLearning.catalog('guided');
+ if(state.route==='learning-recall')return window.sfLearning.catalog('recall');
+ if(state.route==='learning-run')return window.sfLearning.render();
+ if(state.route==='library')return libraryContent();
+ if(state.route==='progress')return progressContent();
+ if(state.route==='planning')return window.studyPlanContent()+sfManualExamForm();
+ if(state.route==='ready')return window.studyReadyContent();
+ if(state.route==='parent')return window.studyParentContent();
+ if(state.route==='more')return moreContent();
+ if(state.route==='quiz-run')return quizContent();
+ if(state.route==='quiz-result')return quizResultContent();
+ if(state.route==='flash-run')return flashContent();
+ return dashboardContent();
 }
 function moreContent(){
-  const items=[['planning','book','Mijn toetsen','Toetsdata en leerplanning'],['ready','spark','Toetsklaar','Check wat je nog moet oefenen'],['progress','chart','Progressie','Bekijk je cijfers'],['library','library','Bibliotheek','Je oefenmateriaal'],['parent','chart','Ouderoverzicht','Jakes resultaten']];
-  return '<div class="page-enter">'+sectionHeading('ALLE FUNCTIES','Meer mogelijkheden','Kies waar je naartoe wilt.')+
-    '<div class="pack-grid">'+items.map(([route,icon,title,desc])=>'<button class="pack-card" data-action="nav" data-route="'+route+'"><div class="pack-top"><span class="pack-icon">'+ic(icon,23)+'</span></div><h3>'+htmlEscape(title)+'</h3><p>'+htmlEscape(desc)+'</p></button>').join('')+'</div></div>';
+ const list=[
+ ['learning-recall','spark','Leg het uit','Test wat je zelf weet'],
+ ['planning','target','Mijn planning','Toetsen en doelen'],
+ ['progress','chart','Mijn voortgang','Je scores bekijken'],
+ ['library','library','Lesmateriaal','Alle onderwerpen'],
+ ['parent','chart','Ouderoverzicht','Jakes vooruitgang'],
+ ['ready','spark','Toetsklaar','Check je voorbereiding']];
+ return `<div class="page-enter sf-more-page">${sectionHeading('VERDER LEREN','Alles voor Jake','Je voortgang, planning en meer.')}
+ <div class="sf-utility-grid">${list.map(([route,icon,title,desc])=>`<button class="sf-utility-card" data-action="nav" data-route="${route}"><span>${ic(icon,24)}</span><strong>${title}</strong><small>${desc}</small><em>→</em></button>`).join('')}</div></div>`;
 }
 const collections=()=>state.dashboard?.collections||[];
 const attempts=()=>state.dashboard?.attempts||[];
@@ -301,6 +321,7 @@ document.addEventListener('click',async ev=>{
  const btn=ev.target.closest('[data-action]');if(!btn||btn.disabled)return;
  const action=btn.dataset.action;
  try {
+  if(action.startsWith('learn-')){await window.sfLearning.handle(action,btn);return;}
   if(action.startsWith('study-')){await window.studyHandleAction(action,btn);return;}
   switch(action){
    case 'reload': location.reload();break;
