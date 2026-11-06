@@ -87,3 +87,5 @@ Bestaande quizscores en flashcardresultaten blijven ongewijzigd; bij eerste aanm
 ## Motiverende drillsergeant
 
 Op Jake's dashboard staat een grappige motivatiekaart met een geoptimaliseerde AVIF-illustratie van 6,5 kB. De kaart verwijst naar de leermethoden zonder bestaande resultaten te veranderen. Afbeelding: `assets/drillsergeant-jake.avif`, stijl: `motivator.css`.
+
+<!-- github-pages-redeploy-trigger: 2026-11-06; no site code changes -->
