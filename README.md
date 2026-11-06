@@ -1,57 +1,77 @@
-# StudyForge Scholte
+# StudyForge Scholte — Jake's Study Lab
 
-Een zelfstandige **lokale proefversie** van de leeromgeving voor gezin Scholte, gebaseerd op de structuur en het ontwerp van [de oorspronkelijke StudyForge](https://github.com/fathom-web/studyforge). De bronrepository en oorspronkelijke database zijn niet gewijzigd.
+Een zelfstandige leeromgeving voor **Jake, 4 vmbo-t**, gebouwd op basis van de bestaande StudyForge-techniek, maar met een compleet nieuwe vormgeving, navigatie en vier leerwijzen.
 
-## Wat werkt zonder database?
+## Vier manieren om te leren
 
-- Eén vast leerlingprofiel: **Jake — vmbo-t, leerjaar 4**. Geen profielaanmaak of andere leerlingen.
-- Het dashboard is bereikbaar via een **viercijferige toegangscode** (eenvoudig UI-slot).
-- De bestaande leerinterface met oefentoetsen, multiplechoice- en open vragen, hints, flashcards, voortgang, cijfers, leerdoelen en ouderoverzicht.
-- Toetsdata handmatig toevoegen per leerling.
-- Nieuwe oefeninhoud via GitHub publiceren in `content/library.json`.
+1. **Oefentoetsen** — toetsen met meerkeuze- en open vragen, uitleg, hints en een cijfer.
+2. **Flashcards** — begrippen leren, kaartjes omdraaien, bekende en moeilijke begrippen bijhouden.
+3. **Leer in stappen** — eerst een korte uitleg en voorbeeld, dan een oefening en directe feedback. Ondersteunt `learn`, `lessonTitle` en `example` bij vragen.
+4. **Leg het uit** — actief ophalen uit het geheugen: een antwoord zelf formuleren zonder meerkeuzeopties, modelantwoord bekijken, jezelf beoordelen. Moeilijke vragen komen aan het eind nog een keer terug.
 
-**Belangrijke beperking:** de viercijferige code is zichtbaar of te achterhalen uit de publieke websitecode en kan worden omzeild. Er is geen beveiligde login, ouderautorisatie, back-up of synchronisatie tussen apparaten. Cijfers en planning worden alleen in `localStorage` van de browser bewaard en kunnen verloren gaan als browsergegevens worden gewist. Gebruik voorlopig geen gevoelige persoonsgegevens.
+De nieuwe interface gebruikt een warme, heldere stijl en vier herkenbare gekleurde kaarten. Mobiel en desktop hebben een eigen aangepaste navigatie.
 
-## Gepubliceerde leerstof
+## Persoonlijk profiel
 
-De bibliotheek start bewust leeg: er zijn **geen oude leerlingprofielen, lespakketten of cijfers** overgenomen. Publiceer hier alleen nieuwe, geschikte oefeninhoud:
+- **Jake**, leerjaar **4**, niveau **vmbo-t** — er zijn geen andere leerlingprofielen.
+- De viercijferige schermcode is ingesteld op de met de familie afgesproken code.
+- Dit is géén echte authenticatie: de code kan worden achterhaald uit de openbare websitecode en beschermt browsergegevens niet tegen andere gebruikers van het apparaat.
+
+## Opslag zonder database
+
+Deze pilot gebruikt `localStorage` van de browser. Profiel, toetsresultaten, flashcardstatus, leerdoelen en leerroutevoortgang worden **niet** tussen apparaten gesynchroniseerd. Browsergegevens wissen kan resultaten definitief verwijderen. Bewaar hier voorlopig geen gevoelige persoonsgegevens.
+
+Er is geen Supabase-configuratie of data uit de oorspronkelijke StudyForge overgenomen. De originele repository en database zijn niet gewijzigd.
+
+## Demo-oefenmateriaal
+
+Het bestand `content/library.json` bevat een **nieuw, zelfgeschreven voorbeeldpakket**:
+
+- Nederlands — standpunt en argumenten
+- 10 vragen met uitleg, hints en een leerstap
+- 10 flashcards
+
+Dit pakket is bedoeld om de vier methoden te testen. Het is geen officieel examenmateriaal en bevat geen persoonlijke schooldocumenten. Later kan het worden vervangen of aangevuld met Jake's eigen lesstof.
+
+### Lesstof publiceren
+
+Het formaat is `studyforge-library/v1`. Een voorbeeld:
 
 ```json
 {
   "schema": "studyforge-library/v1",
-  "packs": [
-    {
-      "id": "engels-h1-v1",
-      "profile": "Jake",
-      "collections": [
-        {
-          "type": "quiz",
-          "subject": "Engels",
-          "title": "Hoofdstuk 1",
-          "questions": [
-            {"type":"mc","question":"Voorbeeldvraag?","options":["Onjuist","Juist"],"correct":1,"explanation":"Uitleg bij het antwoord."}
-          ]
-        },
-        {
-          "type": "flashcards",
-          "subject": "Engels",
-          "title": "Begrippen",
-          "cards": [{"front":"Vraag","back":"Antwoord"}]
-        }
-      ]
-    }
-  ],
+  "packs": [{
+    "id": "jake-economie-h1-v1",
+    "profile": "Jake",
+    "collections": [{
+      "type": "quiz",
+      "subject": "Economie",
+      "title": "Hoofdstuk 1",
+      "questions": [{
+        "type": "mc",
+        "question": "Voorbeeldvraag?",
+        "options": ["A", "B"],
+        "correct": 1,
+        "hint": "Denk aan de kern van de vraag.",
+        "learn": "Korte lesuitleg vooraf",
+        "lessonTitle": "De basis",
+        "example": "Uitgewerkt voorbeeld",
+        "explanation": "Waarom het juiste antwoord klopt."
+      }]
+    }]
+  }],
   "exams": []
 }
 ```
 
-`profile` moet exact overeenkomen met de lokale voornaam van de leerling. Houd pack-ID's stabiel om historische resultaten te behouden. Het platform leest deze bibliotheek bij het openen van de site opnieuw in.
+Oefenpakketten kunnen ook `flashcards` met `cards` bevatten. Maak voor nieuwe versies stabiele unieke pack-ID's, zodat eerder behaalde resultaten gekoppeld blijven. Publiceer in deze openbare repository geen privébestanden of originele schooldocumenten.
 
-## Website
+## Live zetten
 
-De beoogde URL is https://jakescholte.github.io/studyforge-scholte/ nadat de eigenaar GitHub Pages heeft ingeschakeld via **Settings → Pages → Deploy from a branch → main → / (root)**.
+De repository-eigenaar publiceert via GitHub Pages vanuit de `main` branch, rootmap. De site staat op:
 
-## Vervolg
+https://jakescholte.github.io/studyforge-scholte/
 
-Na een praktijktest: René's Supabase-project, veilige authenticatie en ouderrollen, RLS, gescheiden leerlinggegevens, back-up en synchronisatie. Het geplande 3D-professorlogo kan worden toegevoegd zodra het is aangeleverd.
+## Later
 
+Veilige authenticatie, een eigen Supabase-database met RLS, ouderrechten, back-up en synchronisatie. Het afzonderlijk aangeleverde 3D-professorlogo kan later worden toegevoegd.
