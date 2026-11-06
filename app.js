@@ -183,22 +183,58 @@ function stats(){
  return {packs:collections().length, exams:collections().filter(x=>x.type==='quiz').length,cards:collections().filter(x=>x.type==='flashcards').reduce((a,x)=>a+x.count,0), done:tests.length, avg:scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length):null,known:flashes().filter(p=>+p.known===1).length};
 }
 function dashboardContent(){
- const s=stats();const last=collections().slice(0,3);
- const grades=attempts().slice(0,4);
- return `<div class="page-enter">${state.cloudWarning?`<div class="study-warning" role="status">${htmlEscape(state.cloudWarning)}</div>`:''}${window.studyDashboardWidget?.()||''}<div class="dashboard-hero"><div class="hero-copy"><div class="eyebrow"><span class="hero-dot"></span> JOUW DASHBOARD</div><h1>Hoi ${htmlEscape(profileName())}<span class="wave-dot">.</span></h1><p>Klaar om iets nieuws te leren? Kies wat je vandaag wilt oefenen en ontdek hoeveel je al weet.</p><button class="btn btn-white" data-action="nav" data-route="quizzes">Begin met oefenen ${ic('arrow',18)}</button></div><div class="hero-decoration sf-glyph" aria-hidden="true">${ic("book",88)}</div></div>
- <div class="metric-grid"><div class="metric-card"><span class="metric-icon mint">${ic('exam',21)}</span><span class="metric-number">${s.done}</span><span class="metric-label">Toetsen gemaakt</span></div><div class="metric-card"><span class="metric-icon purple">${ic('cards',21)}</span><span class="metric-number">${s.known}<small> / ${s.cards}</small></span><span class="metric-label">Flashcards gekend</span></div><div class="metric-card"><span class="metric-icon peach">${ic('trophy',21)}</span><span class="metric-number">${s.avg===null?'–':gradeFmt(s.avg)}</span><span class="metric-label">Gemiddeld cijfer</span></div><div class="metric-card"><span class="metric-icon blue">${ic('target',21)}</span><span class="metric-number">${missed().length}</span><span class="metric-label">Nog eens oefenen</span></div></div>
- <div class="section-top"><div><div class="eyebrow">KIES JOUW ACTIVITEIT</div><h2>Wat gaan we doen?</h2></div></div>
- <div class="activity-grid"><button class="activity-card activity-exams" data-action="nav" data-route="quizzes"><span class="activity-icon">${ic('exam',28)}</span><span class="activity-title">Oefenexamens</span><span class="activity-desc">Test je kennis met uitdagende vragen.</span><span class="activity-more">Start een toets ${ic('arrow',18)}</span></button><button class="activity-card activity-flash" data-action="nav" data-route="flashcards"><span class="activity-icon">${ic('cards',28)}</span><span class="activity-title">Flashcards</span><span class="activity-desc">Leer begrippen op een slimme manier.</span><span class="activity-more">Kaarten oefenen ${ic('arrow',18)}</span></button><button class="activity-card activity-progress" data-action="nav" data-route="progress"><span class="activity-icon">${ic('chart',28)}</span><span class="activity-title">Mijn progressie</span><span class="activity-desc">Bekijk hoe goed je bezig bent.</span><span class="activity-more">Mijn resultaten ${ic('arrow',18)}</span></button><button class="activity-card activity-mistakes" data-action="practice-mistakes"><span class="activity-icon">${ic('target',28)}</span><span class="activity-title">Fouten oefenen</span><span class="activity-desc">Maak moeilijke vragen nog een keer.</span><span class="activity-more">Opnieuw proberen ${ic('arrow',18)}</span></button></div>
- <div class="dashboard-lower"><section class="panel"><div class="panel-heading"><div><div class="eyebrow">VERS TOEGEVOEGD</div><h3>Mijn leermateriaal</h3></div><button class="text-link" data-action="nav" data-route="library">Bekijk alles ${ic('arrow',15)}</button></div>${last.length?`<div class="material-list">${last.map(item=>packRow(item)).join('')}</div>`:emptyState('library','Er staat nog geen lesmateriaal klaar.','Nieuwe toetsen en flashcards verschijnen hier zodra ze vanuit het Huiswerk-project zijn toegevoegd.')}</section><section class="panel"><div class="panel-heading"><div><div class="eyebrow">JOUW RESULTATEN</div><h3>Recent geoefend</h3></div><button class="text-link" data-action="nav" data-route="progress">Progressie ${ic('arrow',15)}</button></div>${grades.length?`<div class="results-list">${grades.map(a=>`<div class="result-row"><div class="result-medal">${ic('exam',19)}</div><div class="result-info"><b>${htmlEscape(a.title)}</b><span>${htmlEscape(a.subject)} · ${fmtDate(a.created_at)}</span></div><span class="grade-pill ${+a.grade>=5.5?'pass':'fail'}">${gradeFmt(a.grade)}</span></div>`).join('')}</div>`:emptyState('chart','Nog geen cijfers','Je eerste resultaat verschijnt hier na het afronden van een toets.')}</section></div></div>`;
+ const s=stats();
+ const methods=[
+  {no:'01',icon:'exam',type:'toets',title:'Oefentoetsen',hint:'CHECK WAT JE KUNT',desc:'Maak een oefentoets, bekijk je cijfer en ontdek waar je nog kunt groeien.',route:'quizzes',cta:'Start een toets'},
+  {no:'02',icon:'cards',type:'kaarten',title:'Flashcards',hint:'BEGRIPPEN ONTHOUDEN',desc:'Oefen met kaartjes en herhaal de begrippen die je nog niet kent.',route:'flashcards',cta:'Oefen met kaarten'},
+  {no:'03',icon:'book',type:'stappen',title:'Leer in stappen',hint:'EERST BEGRIJPEN',desc:'Lees een korte uitleg, maak een kleine opdracht en leer van feedback.',route:'learning-guided',cta:'Leer stap voor stap'},
+  {no:'04',icon:'spark',type:'uitleg',title:'Leg het uit',hint:'ACTIEF ONTHOUDEN',desc:'Geef zelf antwoord zonder keuzehulp. Moeilijke vragen komen terug.',route:'learning-recall',cta:'Test je geheugen'}
+ ];
+ return `<div class="sf-home page-enter">
+  <section class="sf-home-hero">
+   <div class="sf-hero-copy"><span class="sf-eyebrow">JOUW PERSOONLIJKE LEERPLEK · 4 VMBO-T</span>
+     <h1>Hey Jake, <span>ready om te knallen?</span></h1>
+     <p>Je hoeft niet uren te blokken. Kies hoe jij wilt leren en zet weer een stap richting je examen.</p>
+     <div class="sf-hero-tags"><span>✦ In jouw tempo</span><span>↗ Elke dag een stap</span></div>
+   </div>
+   <div class="sf-hero-graphic" aria-hidden="true"><div class="sf-orbit-ring"></div>
+     <span class="sf-hero-star sf-a">✳</span><span class="sf-hero-star sf-b">✦</span><span class="sf-hero-symbol">J<span>↗</span></span></div>
+  </section>
+  <div class="sf-home-section-title"><div><span class="sf-eyebrow">JOUW STUDY MODES</span>
+    <h2>Hoe wil je vandaag leren?</h2><p>Vier manieren, steeds met dezelfde lesstof. Wissel ze af voor het beste resultaat.</p></div>
+    <span class="sf-four-mark">4 <small>manieren</small></span></div>
+  <div class="sf-four-grid">
+   ${methods.map(m=>`<button class="sf-mode-card sf-mode-${m.type}" data-action="nav" data-route="${m.route}">
+      <span class="sf-mode-header"><span class="sf-mode-icon">${ic(m.icon,29)}</span><span class="sf-mode-number">${m.no}</span></span>
+      <span class="sf-mode-hint">${m.hint}</span><strong>${m.title}</strong>
+      <span class="sf-mode-description">${m.desc}</span>
+      <span class="sf-mode-footer"><span>${m.cta}</span><span class="sf-mode-arrow">↗</span></span>
+    </button>`).join('')}
+  </div>
+  <section class="sf-home-bottom">
+   <div class="sf-home-progress"><span class="sf-eyebrow">ZO STA JE ERVOOR</span><h3>Iedere oefening telt.</h3>
+     <div class="sf-home-metrics"><div><b>${s.done}</b><span>Toetsen gedaan</span></div>
+       <div><b>${s.avg===null?'–':gradeFmt(s.avg)}</b><span>Gemiddeld cijfer</span></div>
+       <div><b>${s.known}</b><span>Kaarten geleerd</span></div></div>
+     <button class="sf-text-action" data-action="nav" data-route="progress">Bekijk je voortgang →</button>
+   </div>
+   <div class="sf-home-next"><span class="sf-eyebrow">STUDIETIP</span><h3>Leer → leg uit → toets.</h3>
+     <p>Begin met <b>Leer in stappen</b>, probeer daarna <b>Leg het uit</b> en controleer je kennis met een <b>Oefentoets</b>.</p>
+     <div class="sf-flow-dots"><span>1 · Begrijpen</span><span>2 · Onthouden</span><span>3 · Checken</span></div>
+   </div>
+  </section>
+  <div class="sf-home-bottom-link"><button data-action="nav" data-route="planning">Mijn toetsplanning ↗</button>
+    <button data-action="nav" data-route="library">Lesmateriaal bekijken ↗</button></div>
+ </div>`;
 }
 function emptyState(icon,title,desc){return `<div class="empty-state">${ic(icon,32)}<h3>${htmlEscape(title)}</h3><p>${htmlEscape(desc)}</p></div>`;}
 function packRow(item){return `<button class="material-row" data-action="open-pack" data-id="${item.id}"><span class="material-icon ${item.type==='quiz'?'exam-tile':'flash-tile'}">${ic(item.type==='quiz'?'exam':'cards',21)}</span><span class="material-info"><b>${htmlEscape(item.title)}</b><span>${htmlEscape(item.subject)} <span class="bullet">·</span> ${item.type==='quiz'&&item.questions_per_attempt?item.questions_per_attempt+' per toets · '+item.count+' totaal':item.count+' '+(item.type==='quiz'?'vragen':'kaarten')}</span></span><span class="material-chevron">${ic('chevron',18)}</span></button>`;}
 function listContent(type){
  const available=collections().filter(c=>c.type===type);
  const subjectList=[...new Set(available.map(c=>c.subject))];
- return `<div class="page-enter">${sectionHeading(type==='quiz'?'TEST JE KENNIS':'LEREN IN JE EIGEN TEMPO',type==='quiz'?'Oefenexamens':'Flashcards',type==='quiz'?'Maak een toets, krijg direct een cijfer en ontdek wat je nog kunt oefenen.':'Draai kaarten om en onthoud steeds een beetje meer.')}
+ return `<div class="page-enter">${sectionHeading(type==='quiz'?'TEST JE KENNIS':'LEREN IN JE EIGEN TEMPO',type==='quiz'?'Oefentoetsen':'Flashcards',type==='quiz'?'Maak een toets, krijg direct een cijfer en ontdek wat je nog kunt oefenen.':'Draai kaarten om en onthoud steeds een beetje meer.')}
  <div class="page-stats"><span class="badge-soft">${ic(type==='quiz'?'exam':'cards',16)} ${available.length} sets beschikbaar</span><span class="badge-soft">${ic('book',16)} ${subjectList.length} vakken</span></div>
- ${available.length?`<div class="pack-grid">${available.map(c=>packCard(c)).join('')}</div>`:emptyState(type==='quiz'?'exam':'cards',type==='quiz'?'Nog geen oefenexamens':'Nog geen flashcards','Nieuwe toetsen en flashcards worden vanuit het Huiswerk-project toegevoegd.')}</div>`;
+ ${available.length?`<div class="pack-grid">${available.map(c=>packCard(c)).join('')}</div>`:emptyState(type==='quiz'?'exam':'cards',type==='quiz'?'Nog geen oefenexamens':'Nog geen flashcards','Nieuwe onderwerpen worden via StudyForge Scholte toegevoegd.')}</div>`;
 }
 function packCard(c){
  const progress=c.type==='flashcards'?flashes().filter(p=>+p.collection_id===c.id && +p.known===1).length:0;
