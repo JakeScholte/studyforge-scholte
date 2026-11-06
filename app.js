@@ -90,8 +90,46 @@ function renderChoose(){
    </div>
  </main>`;
 }
-function requestProfilePin(id){return selectProfile(Number(id));}
-function renderProfilePin(){return renderChoose();}
+// 4-cijferige UI-code, bedoeld als gemaksslot. Omdat dit een openbare statische
+// site is, biedt deze code GEEN beveiligde authenticatie of gegevensbescherming.
+const SF_LOCAL_PIN = '2011';
+function requestProfilePin(id){
+ const target=Number(id);
+ if(!state.profiles.some(p=>Number(p.id)===target))return;
+ state.pendingProfile=target;
+ state.pinError=false;
+ state.route='profile-pin';
+ render();
+ $('#sf-profile-pin')?.focus();
+}
+function renderProfilePin(){
+ const pupil=state.profiles.find(p=>Number(p.id)===Number(state.pendingProfile));
+ if(!pupil){state.route='choose';render();return;}
+ $('#app').innerHTML=`<main class="welcome-shell sf-welcome">
+ <div class="welcome-orb one"></div><div class="welcome-orb two"></div>
+ <div class="welcome-content sf-welcome-inner">
+   ${brand()}
+   <section class="sf-welcome-section sf-single-student">
+     <div class="eyebrow">${ic('lock',18)} JAKES LEEROMGEVING</div>
+     <h1>Toegangscode<span class="accent-dot">.</span></h1>
+     <p class="welcome-lead">Voer je viercijferige code in om je dashboard te openen.</p>
+     <form id="sfPinForm" class="sf-profile-form" autocomplete="off">
+       <label for="sf-profile-pin">Viercijferige code
+         <input id="sf-profile-pin" name="code" type="password" inputmode="numeric"
+           autocomplete="off" pattern="[0-9]{4}" minlength="4" maxlength="4"
+           placeholder="••••" required aria-invalid="${state.pinError?'true':'false'}"
+           aria-describedby="sf-pin-feedback">
+       </label>
+       <p id="sf-pin-feedback" role="alert" class="sf-muted">${state.pinError?'De code is niet juist. Probeer opnieuw.':''}</p>
+       <div class="sf-profile-buttons">
+         <button class="btn btn-primary" type="submit">Open mijn dashboard ${ic('arrow',18)}</button>
+         <button class="btn btn-outline" type="button" data-action="pin-back">Terug</button>
+       </div>
+     </form>
+   </section>
+   <p class="sf-local-disclaimer">Dit is een eenvoudig toegangsscherm, geen beveiligde login. Je resultaten staan alleen in deze browser.</p>
+ </div></main>`;
+}
 
 function sfManualExamForm(){
  return `<section class="study-panel sf-manual-exam"><h2>Nieuwe toets plannen</h2><p>De toets wordt lokaal opgeslagen voor dit leerlingprofiel.</p><div class="sf-profile-form sf-exam-grid"><label>Titel<input id="sf-exam-title" maxlength="120" placeholder="Hoofdstuk 3"></label><label>Vak<input id="sf-exam-subject" maxlength="80" placeholder="Engels"></label><label>Datum<input id="sf-exam-date" type="date"></label></div><button type="button" class="study-button" data-action="study-add-exam">Toets toevoegen</button></section>`;
@@ -270,7 +308,7 @@ document.addEventListener('click',async ev=>{
    case 'pin-back':state.pendingProfile=null;state.pinError=false;state.route='choose';render();break;
    case 'change-profile':window.sfCloud?.clear();state.profile=null;state.pendingProfile=null;state.pinError=false;state.route='choose';state.dashboard=null;render();break;
    case 'nav':await navigate(btn.dataset.route);break;
-   case 'logout':await api('logout',{});state.route=window.sfMode()==='supabase'?'unlock':'choose';state.profile=null;state.admin=window.sfMode()==='local';render();break;
+   case 'logout':await api('logout',{});state.route=window.sfMode()==='supabase'?'unlock':'choose';state.profile=null;state.pendingProfile=null;state.pinError=false;state.dashboard=null;state.admin=window.sfMode()==='local';render();break;
    case 'open-pack':await openPack(btn.dataset.id);break;
    case 'practice-mistakes':await practiceMistakes();break;
    case 'quit-quiz':if(window.confirm('Wil je de toets verlaten? Je huidige antwoorden worden niet opgeslagen.')){state.quiz=null;await navigate('quizzes');}break;
@@ -289,6 +327,23 @@ document.addEventListener('click',async ev=>{
  }catch(e){handleError(e);}
 });
 
+document.addEventListener('submit',async ev=>{
+ if(ev.target.id!=='sfPinForm')return;
+ ev.preventDefault();
+ const entered=String($('#sf-profile-pin')?.value||'');
+ const target=state.pendingProfile;
+ if(!state.profiles.some(p=>Number(p.id)===Number(target))){state.route='choose';render();return;}
+ if(entered!==SF_LOCAL_PIN){
+   state.pinError=true;
+   render();
+   $('#sf-profile-pin')?.focus();
+   return;
+ }
+ state.pinError=false;
+ state.pendingProfile=null;
+ try{await selectProfile(target);}
+ catch(e){handleError(e);}
+});
 document.addEventListener('input',ev=>{
  if(ev.target.id==='open-text'&&state.quiz)state.quiz.answers[state.quiz.index].typed=ev.target.value;
  if(ev.target.id==='library-search') {
