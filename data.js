@@ -1,29 +1,8 @@
 /* StudyForge data layer: local browser storage by default, optional Supabase Auth + RLS. */
 'use strict';
 
-function sfReadProfiles(){
- try {
-   const p=JSON.parse(localStorage.getItem('studyforge-scholte-profiles-v1')||'[]');
-   if(Array.isArray(p))return p.filter(x=>x&&Number.isInteger(x.id)&&x.id>0&&typeof x.name==='string'&&x.name.trim()).slice(0,12);
- }catch(e){console.warn('Leerlingprofielen niet bereikbaar',e)}
- return [];
-}
-const SF_PROFILES=sfReadProfiles();
-function sfUpsertProfile(x){
- const name=String(x.name||'').trim(),level=String(x.level||'').trim(),year=String(x.year||'').trim();
- const subjects=String(x.subjects||'').split(',').map(s=>s.trim()).filter(Boolean).slice(0,20);
- if(!name||name.length>40||level.length>50||year.length>20)throw Error('Controleer de profielgegevens.');
- const idx=SF_PROFILES.findIndex(p=>p.id===Number(x.id));
- if(SF_PROFILES.some((p,i)=>i!==idx&&p.name.toLowerCase()===name.toLowerCase()))throw Error('Deze leerling bestaat al.');
- if(idx<0&&SF_PROFILES.length>=12)throw Error('Maximaal 12 leerlingen.');
- const profiles=SF_PROFILES.slice(),record={id:idx>=0?Number(x.id):Math.max(0,...profiles.map(p=>p.id))+1,name,level,year,subjects};
- if(idx<0)profiles.push(record);else profiles[idx]=record;
- try{localStorage.setItem('studyforge-scholte-profiles-v1',JSON.stringify(profiles))}
- catch(e){throw Error('Opslaan mislukt; controleer browseropslag.')}
- SF_PROFILES.splice(0,SF_PROFILES.length,...profiles);
- return record;
-}
-window.sfUpsertProfile=sfUpsertProfile;
+// Eén leerling, vast geconfigureerd. De oude profielwizard en PIN zijn verwijderd.
+const SF_PROFILES = Object.freeze([{id:1,name:'Jake',level:'vmbo-t',year:'4',subjects:[]}]);
 const SF_CONFIG = window.STUDYFORGE_SUPABASE || {};
 const SF_CLOUD = !!(SF_CONFIG.sharedMode && SF_CONFIG.url && (SF_CONFIG.publishableKey || SF_CONFIG.anonKey));
 const SF_REMOTE = !!(!SF_CONFIG.sharedMode && SF_CONFIG.url && (SF_CONFIG.publishableKey || SF_CONFIG.anonKey));
@@ -31,9 +10,7 @@ const SF_STORE_KEY = 'studyforge-scholte-local-v1';
 let SF_CLIENT = null;
 let SF_ADMIN = false;
 let SF_LOCAL_DATA = null;
-/* Afgeronde Engelse My Future-pakketten (27 oktober 2026).
-   Alleen verbergen in het oefenaanbod, NIET verwijderen uit de opslag:
-   historische cijfers en flashcardbeoordelingen blijven intact. */
+/* Nieuwe bibliotheek: geen historisch gearchiveerde pakketten. */
 const SF_ARCHIVED_PACK_IDS = new Set();
 function sfIsArchivedCollection(col){
   if(!col || typeof col.source_key!=='string')return false;
