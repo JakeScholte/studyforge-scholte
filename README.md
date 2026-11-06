@@ -5,11 +5,12 @@ Een zelfstandige **lokale proefversie** van de leeromgeving voor gezin Scholte, 
 ## Wat werkt zonder database?
 
 - Eén vast leerlingprofiel: **Jake — vmbo-t, leerjaar 4**. Geen profielaanmaak of andere leerlingen.
+- Het dashboard is bereikbaar via een **viercijferige toegangscode** (eenvoudig UI-slot).
 - De bestaande leerinterface met oefentoetsen, multiplechoice- en open vragen, hints, flashcards, voortgang, cijfers, leerdoelen en ouderoverzicht.
 - Toetsdata handmatig toevoegen per leerling.
 - Nieuwe oefeninhoud via GitHub publiceren in `content/library.json`.
 
-**Belangrijke beperking:** er is geen beveiligde login, ouderautorisatie, back-up of synchronisatie tussen apparaten. Cijfers en planning worden alleen in `localStorage` van de browser bewaard en kunnen verloren gaan als browsergegevens worden gewist. Gebruik voorlopig geen gevoelige persoonsgegevens.
+**Belangrijke beperking:** de viercijferige code is zichtbaar of te achterhalen uit de publieke websitecode en kan worden omzeild. Er is geen beveiligde login, ouderautorisatie, back-up of synchronisatie tussen apparaten. Cijfers en planning worden alleen in `localStorage` van de browser bewaard en kunnen verloren gaan als browsergegevens worden gewist. Gebruik voorlopig geen gevoelige persoonsgegevens.
 
 ## Gepubliceerde leerstof
 
