@@ -1,5 +1,217 @@
 {
   "schema": "studyforge-library/v1",
-  "packs": [],
+  "packs": [
+    {
+      "id": "jake-nederlands-argumentatie-demo-v1",
+      "profile": "Jake",
+      "collections": [
+        {
+          "type": "quiz",
+          "subject": "Nederlands",
+          "title": "DEMO · Standpunt en argumenten",
+          "description": "Voorbeeld voor 4 vmbo-t. Leer standpunten, argumenten en signaalwoorden herkennen.",
+          "questionsPerAttempt": 10,
+          "questions": [
+            {
+              "lessonTitle": "Een standpunt herkennen",
+              "learn": "Een standpunt is wat iemand vindt of wil. Vaak herken je het aan woorden als 'ik vind', 'moet' of 'zou moeten'. Een argument vertelt waarom.",
+              "example": "'De pauze moet langer' is een standpunt. 'Dan kunnen leerlingen beter uitrusten' is een argument.",
+              "type": "mc",
+              "question": "Wat is het standpunt in: 'School moet later beginnen, want leerlingen zijn dan uitgeruster'?",
+              "options": [
+                "Leerlingen zijn uitgeruster",
+                "School moet later beginnen",
+                "Er is geen standpunt",
+                "Leerlingen slapen altijd genoeg"
+              ],
+              "correct": 1,
+              "hint": "Zoek wat de schrijver graag veranderd wil zien.",
+              "explanation": "'School moet later beginnen' zegt wat de schrijver vindt. 'Leerlingen zijn uitgeruster' geeft de reden."
+            },
+            {
+              "lessonTitle": "Een argument herkennen",
+              "learn": "Een argument onderbouwt een standpunt. Het geeft de reden voor iemands mening. Signaalwoorden als 'want' en 'omdat' helpen je het argument te vinden.",
+              "example": "'Fietsen is gezond, omdat je beweegt.' De reden na 'omdat' is het argument.",
+              "type": "mc",
+              "question": "Welke zin geeft het argument bij 'Huiswerk mag minder'?",
+              "options": [
+                "Huiswerk mag minder",
+                "Ik vind huiswerk vervelend",
+                "Leerlingen houden dan meer tijd over om te sporten",
+                "Wat vind jij van huiswerk?"
+              ],
+              "correct": 2,
+              "hint": "Welk antwoord legt uit waarom minder huiswerk wenselijk zou zijn?",
+              "explanation": "Een argument ondersteunt de mening met een reden. Meer tijd om te sporten is hier die reden."
+            },
+            {
+              "lessonTitle": "Feiten en meningen",
+              "learn": "Een feit kun je controleren met betrouwbare gegevens. Een mening is een persoonlijke opvatting. Let erop of iets objectief te onderzoeken is.",
+              "example": "'De les duurt 50 minuten' kun je controleren; 'de les duurt te lang' is een mening.",
+              "type": "mc",
+              "question": "Welke uitspraak is een controleerbaar feit?",
+              "options": [
+                "Nederlands is het leukste vak",
+                "Op onze school begint de eerste les om 08.30 uur",
+                "Vroeg opstaan is verschrikkelijk",
+                "Iedereen houdt van gym"
+              ],
+              "correct": 1,
+              "hint": "Kun je de uitspraak met een rooster of andere bron controleren?",
+              "explanation": "Een begintijd staat in een rooster en is controleerbaar. De andere uitspraken zijn waardeoordelen of generalisaties."
+            },
+            {
+              "lessonTitle": "Een mening herkennen",
+              "learn": "Een mening gaat over wat iemand mooi, belangrijk, beter of slechter vindt. Meningen kunnen verschillen, ook als mensen dezelfde feiten kennen.",
+              "example": "'Dit boek is spannend' is een mening. De één vindt dat, de ander niet.",
+              "type": "mc",
+              "question": "Welke uitspraak is vooral een mening?",
+              "options": [
+                "Een week heeft zeven dagen",
+                "Water bevriest bij ongeveer 0 °C bij normale luchtdruk",
+                "De nieuwe schoolbibliotheek is veel gezelliger",
+                "De school heeft drie verdiepingen"
+              ],
+              "correct": 2,
+              "hint": "Waarover zouden twee mensen het op basis van hun smaak oneens kunnen zijn?",
+              "explanation": "'Veel gezelliger' is een persoonlijke beoordeling en daarom een mening."
+            },
+            {
+              "lessonTitle": "Tegenargumenten",
+              "learn": "Een tegenargument geeft een reden tégen het standpunt. Je laat daarmee zien welke bezwaren er bij een mening bestaan.",
+              "example": "Standpunt: 'Lessen moeten online.' Tegenargument: 'Dan missen leerlingen contact met klasgenoten.'",
+              "type": "mc",
+              "question": "Wat is een tegenargument bij 'Leerlingen moeten altijd digitaal toetsen'?",
+              "options": [
+                "Digitale toetsen zijn sneller na te kijken",
+                "Je kunt ze overal maken",
+                "Niet iedere leerling beschikt over een goed apparaat",
+                "Digitale toetsen kunnen handig zijn"
+              ],
+              "correct": 2,
+              "hint": "Zoek een probleem of nadeel dat het standpunt minder sterk maakt.",
+              "explanation": "Geen goed apparaat hebben is een bezwaar tegen verplicht digitaal toetsen."
+            },
+            {
+              "lessonTitle": "Een tegenargument weerleggen",
+              "learn": "Bij een weerlegging reageer je op een tegenargument. Je legt uit waarom dat bezwaar niet doorslaggevend hoeft te zijn.",
+              "example": "Tegenargument: 'Het kost te veel.' Weerlegging: 'Op de lange termijn besparen we juist kosten.'",
+              "type": "mc",
+              "question": "Wat is de beste weerlegging van 'Een extra schoolpauze kost te veel lestijd'?",
+              "options": [
+                "Pauze is leuk",
+                "Leerlingen moeten gewoon pauze krijgen",
+                "Na een goede pauze kunnen leerlingen geconcentreerder werken",
+                "Een pauze is een pauze"
+              ],
+              "correct": 2,
+              "hint": "Welk antwoord reageert inhoudelijk op het bezwaar over lestijd?",
+              "explanation": "Dit antwoord verdedigt de pauze door uit te leggen hoe die de leskwaliteit kan verbeteren."
+            },
+            {
+              "lessonTitle": "Signaalwoorden: oorzaak",
+              "learn": "Signaalwoorden leggen verbanden. 'Omdat', 'doordat' en 'want' leiden vaak een reden of oorzaak in.",
+              "example": "'Het veld is nat doordat het heeft geregend.' Het woord 'doordat' geeft de oorzaak aan.",
+              "type": "mc",
+              "question": "Welk signaalwoord geeft meestal een reden of oorzaak aan?",
+              "options": [
+                "Maar",
+                "Omdat",
+                "Toch",
+                "Hoewel"
+              ],
+              "correct": 1,
+              "hint": "Denk aan het woord dat je gebruikt om een antwoord te geven op 'waarom?'.",
+              "explanation": "'Omdat' introduceert een reden of oorzaak."
+            },
+            {
+              "lessonTitle": "Signaalwoorden: conclusie",
+              "learn": "Met 'dus', 'daarom' en 'kortom' geeft een schrijver vaak een conclusie aan. Een conclusie volgt uit wat daarvoor is gezegd.",
+              "example": "'We hebben genoeg geoefend. Daarom voelen we ons zekerder.' 'Daarom' leidt de conclusie in.",
+              "type": "mc",
+              "question": "Welk woord kondigt meestal een conclusie aan?",
+              "options": [
+                "Terwijl",
+                "Ondanks",
+                "Dus",
+                "Bijvoorbeeld"
+              ],
+              "correct": 2,
+              "hint": "Welk woord betekent hier ongeveer 'daarom kunnen we concluderen'?",
+              "explanation": "'Dus' verbindt eerdere informatie met een gevolg of conclusie."
+            },
+            {
+              "lessonTitle": "Standpunt en argument uitleggen",
+              "learn": "Een sterke redenering bestaat vaak uit twee delen: wat je vindt (standpunt) en waarom je dat vindt (argument). Houd die twee uit elkaar.",
+              "example": "'We moeten vaker lezen, omdat je woordenschat groeit.' De eerste helft is het standpunt, de reden komt daarna.",
+              "type": "open",
+              "question": "Leg in je eigen woorden het verschil uit tussen een standpunt en een argument.",
+              "answer": "Een standpunt is de mening of wens van iemand. Een argument is een reden die dat standpunt ondersteunt.",
+              "hint": "Gebruik in je uitleg de woorden 'mening' en 'reden'.",
+              "explanation": "Je antwoord is goed als duidelijk wordt wat iemand vindt én waarom iemand dat vindt."
+            },
+            {
+              "lessonTitle": "Zelf een argument bedenken",
+              "learn": "Een goed argument is meer dan 'omdat ik dat vind'. Het geeft een inhoudelijke reden die bij het standpunt past.",
+              "example": "Standpunt: 'Sport op school is belangrijk.' Argument: 'Bewegen helpt je fitter te blijven.'",
+              "type": "open",
+              "question": "Bedenk één passend argument vóór het standpunt: 'Scholen moeten meer aandacht besteden aan lezen'.",
+              "answer": "Bijvoorbeeld: 'Meer lezen vergroot je woordenschat en helpt je teksten beter te begrijpen.' Andere goed onderbouwde redenen zijn ook mogelijk.",
+              "hint": "Denk aan taalvaardigheid, tekstbegrip of de toekomst.",
+              "explanation": "Een goed argument geeft een concrete reden waarom lezen meer aandacht zou moeten krijgen."
+            }
+          ]
+        },
+        {
+          "type": "flashcards",
+          "subject": "Nederlands",
+          "title": "DEMO · Argumenteren met flashcards",
+          "description": "Tien belangrijke begrippen uit het voorbeeldonderwerp.",
+          "cards": [
+            {
+              "front": "Standpunt",
+              "back": "Wat iemand vindt of wil."
+            },
+            {
+              "front": "Argument",
+              "back": "Een reden die een standpunt ondersteunt."
+            },
+            {
+              "front": "Feit",
+              "back": "Een uitspraak die je met gegevens kunt controleren."
+            },
+            {
+              "front": "Mening",
+              "back": "Een persoonlijke opvatting of beoordeling."
+            },
+            {
+              "front": "Tegenargument",
+              "back": "Een reden tégen een standpunt."
+            },
+            {
+              "front": "Weerlegging",
+              "back": "Reactie die een tegenargument ontkracht."
+            },
+            {
+              "front": "Omdat / want",
+              "back": "Signaalwoorden voor een reden of oorzaak."
+            },
+            {
+              "front": "Dus / kortom",
+              "back": "Signaalwoorden die een conclusie aangeven."
+            },
+            {
+              "front": "Conclusie",
+              "back": "De gevolgtrekking op basis van eerdere informatie."
+            },
+            {
+              "front": "Betrouwbare bron",
+              "back": "Een bron waarvan de informatie controleerbaar en geloofwaardig is."
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "exams": []
 }
