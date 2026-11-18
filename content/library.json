@@ -211,6 +211,709 @@
           ]
         }
       ]
+    },
+    {
+      "id": "jake-geschiedenis-interbellum-1918-1939-v1",
+      "profile": "Jake",
+      "collections": [
+        {
+          "type": "quiz",
+          "subject": "Geschiedenis",
+          "title": "Geschiedenis · Het interbellum 1918–1939",
+          "description": "4 vmbo-T · Leer uitsluitend de blauw gedrukte begrippen uit de aangeleverde pagina's. Oefen per onderdeel en controleer je kennis.",
+          "questionsPerAttempt": 20,
+          "questions": [
+            {
+              "lessonTitle": "§1 · Het interbellum",
+              "learn": "Herhaal de betekenis van interbellum.",
+              "type": "mc",
+              "question": "Welke periode wordt het interbellum genoemd?",
+              "options": [
+                "1914-1918",
+                "1918-1939",
+                "1939-1945",
+                "1929-1933"
+              ],
+              "correct": 1,
+              "hint": "Denk aan de kern van het begrip interbellum.",
+              "explanation": "Het interbellum is de periode tussen de twee wereldoorlogen: 1918-1939. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§1 · Duitsland na de Eerste Wereldoorlog",
+              "learn": "Republiek van Weimar: Naam voor Duitsland tussen 1918 en 1933. In die tijd was Duitsland een parlementaire democratie.",
+              "type": "mc",
+              "question": "Hoe heette Duitsland tussen 1918 en 1933?",
+              "options": [
+                "Het Duitse Keizerrijk",
+                "De Republiek van Weimar",
+                "Het Derde Rijk",
+                "De Bondsrepubliek"
+              ],
+              "correct": 1,
+              "hint": "Denk aan de kern van het begrip Republiek van Weimar.",
+              "explanation": "Naam voor Duitsland tussen 1918 en 1933. In die tijd was Duitsland een parlementaire democratie. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§1 · Democratie",
+              "learn": "Parlementaire democratie: Een bestuursvorm waarin de macht ligt bij een parlement dat gekozen wordt door de burgers.",
+              "type": "mc",
+              "question": "Wat hoort bij een parlementaire democratie?",
+              "options": [
+                "Eén leider neemt alle besluiten",
+                "De staat bepaalt het hele leven",
+                "Burgers kiezen het parlement",
+                "Het leger kiest de regering"
+              ],
+              "correct": 2,
+              "hint": "Denk aan de kern van het begrip Parlementaire democratie.",
+              "explanation": "Een bestuursvorm waarin de macht ligt bij een parlement dat gekozen wordt door de burgers. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§1 · Dolkstootlegende",
+              "learn": "Dolkstootlegende: Het idee dat het Duitse leger de Eerste Wereldoorlog had kunnen winnen als de regering in 1918 geen wapenstilstand had gesloten.",
+              "type": "mc",
+              "question": "Wat beweerde de dolkstootlegende?",
+              "options": [
+                "Dat Duitsland nooit een leger had",
+                "Dat het Duitse leger had kunnen winnen als de regering geen wapenstilstand sloot",
+                "Dat Frankrijk Duitsland aanviel in 1923",
+                "Dat de Verenigde Staten Duitsland bestuurden"
+              ],
+              "correct": 1,
+              "hint": "Denk aan de kern van het begrip Dolkstootlegende.",
+              "explanation": "Het idee dat het Duitse leger de Eerste Wereldoorlog had kunnen winnen als de regering in 1918 geen wapenstilstand had gesloten. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§1 · Vredesverdrag",
+              "learn": "Verdrag van Versailles: Het vredesverdrag tussen Duitsland en de geallieerden na afloop van de Eerste Wereldoorlog.",
+              "type": "mc",
+              "question": "Tussen wie werd het Verdrag van Versailles gesloten?",
+              "options": [
+                "Duitsland en de geallieerden",
+                "Duitsland en de Sovjet-Unie",
+                "Italië en Frankrijk",
+                "Nederland en Duitsland"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Verdrag van Versailles.",
+              "explanation": "Het vredesverdrag tussen Duitsland en de geallieerden na afloop van de Eerste Wereldoorlog. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§1 · Economie",
+              "learn": "Inflatie: Het geld wordt minder waard.",
+              "type": "mc",
+              "question": "Wat betekent inflatie volgens de begrippenlijst?",
+              "options": [
+                "Aandelen worden meer waard",
+                "Het geld wordt minder waard",
+                "De overheid stopt met uitgeven",
+                "Er komen meer banen"
+              ],
+              "correct": 1,
+              "hint": "Denk aan de kern van het begrip Inflatie.",
+              "explanation": "Het geld wordt minder waard. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§1 · Dawesplan",
+              "learn": "Dawesplan: Plan uit 1924 dat inhield dat de Verenigde Staten goedkope leningen aan Duitsland gaven om zijn economie weer op te bouwen.",
+              "type": "mc",
+              "question": "Wat hield het Dawesplan in?",
+              "options": [
+                "Duitsland kreeg goedkope leningen van de Verenigde Staten",
+                "Duitsland moest Oostenrijk innemen",
+                "De Sovjet-Unie kreeg Duitse fabrieken",
+                "Duitsland sloot een verdrag met Polen"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Dawesplan.",
+              "explanation": "Plan uit 1924 dat inhield dat de Verenigde Staten goedkope leningen aan Duitsland gaven om zijn economie weer op te bouwen. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§1 · Economische crisis",
+              "learn": "Economische crisis: Een periode waarin het slecht gaat met de economie.",
+              "type": "mc",
+              "question": "Wat is een economische crisis?",
+              "options": [
+                "Een periode waarin het slecht gaat met de economie",
+                "Een bijeenkomst van Europese leiders",
+                "Een geheime politieorganisatie",
+                "Een vredesverdrag"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Economische crisis.",
+              "explanation": "Een periode waarin het slecht gaat met de economie. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§1 · Beurskrach",
+              "learn": "Beurskrach: Een grote, plotselinge daling van de koersen van aandelen.",
+              "type": "mc",
+              "question": "Wat gebeurt er bij een beurskrach?",
+              "options": [
+                "De koersen van aandelen dalen plotseling sterk",
+                "Het geld wordt automatisch meer waard",
+                "De overheid maakt een vijfjarenplan",
+                "Een parlement wordt gekozen"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Beurskrach.",
+              "explanation": "Een grote, plotselinge daling van de koersen van aandelen. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§2 · NSDAP",
+              "learn": "Nationaalsocialistische Duitse Arbeiderspartij (NSDAP): De politieke partij van Adolf Hitler.",
+              "type": "mc",
+              "question": "Wat was de NSDAP?",
+              "options": [
+                "De geheime politie",
+                "De politieke partij van Adolf Hitler",
+                "Een Duitse vakbond",
+                "Een vredesorganisatie"
+              ],
+              "correct": 1,
+              "hint": "Denk aan de kern van het begrip Nationaalsocialistische Duitse Arbeiderspartij (NSDAP).",
+              "explanation": "De politieke partij van Adolf Hitler. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§2 · Führerprincipe",
+              "learn": "Führerprincipe: Er is één leider die alle besluiten neemt en aan wie iedereen gehoorzaamt.",
+              "type": "mc",
+              "question": "Wat houdt het Führerprincipe in?",
+              "options": [
+                "Iedereen beslist samen",
+                "Eén leider neemt alle besluiten en iedereen gehoorzaamt",
+                "Burgers kiezen alle rechters",
+                "De economie wordt door boeren geleid"
+              ],
+              "correct": 1,
+              "hint": "Denk aan de kern van het begrip Führerprincipe.",
+              "explanation": "Er is één leider die alle besluiten neemt en aan wie iedereen gehoorzaamt. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§2 · Persoonsverheerlijking",
+              "learn": "Persoonsverheerlijking: Een mens als een soort god vereren.",
+              "type": "mc",
+              "question": "Wat betekent persoonsverheerlijking?",
+              "options": [
+                "Een mens als een soort god vereren",
+                "Alle organisaties controleren",
+                "Een land verdelen",
+                "Een economie plannen"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Persoonsverheerlijking.",
+              "explanation": "Een mens als een soort god vereren. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§2 · Ideologie",
+              "learn": "Antisemitisme: Haat tegen joden.",
+              "type": "mc",
+              "question": "Welk begrip betekent haat tegen joden?",
+              "options": [
+                "Militarisme",
+                "Nationalisme",
+                "Antisemitisme",
+                "Communisme"
+              ],
+              "correct": 2,
+              "hint": "Denk aan de kern van het begrip Antisemitisme.",
+              "explanation": "Haat tegen joden. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§2 · Dictatuur",
+              "learn": "Dictatuur: Een manier van regeren waarbij één persoon of een kleine groep alle macht heeft.",
+              "type": "mc",
+              "question": "Wat is een dictatuur?",
+              "options": [
+                "Een land waarin burgers het parlement kiezen",
+                "Een manier van regeren waarbij één persoon of kleine groep alle macht heeft",
+                "Een economie die door de overheid wordt geleid",
+                "Een vredesverdrag"
+              ],
+              "correct": 1,
+              "hint": "Denk aan de kern van het begrip Dictatuur.",
+              "explanation": "Een manier van regeren waarbij één persoon of een kleine groep alle macht heeft. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§2 · Totalitaire staat",
+              "learn": "Totalitaire staat: Een land waarin het leven van de inwoners volledig wordt beheerst door de staat.",
+              "type": "mc",
+              "question": "Wat maakt een staat totalitair volgens de begrippenlijst?",
+              "options": [
+                "De inwoners besturen alles zelf",
+                "Het leven van inwoners wordt volledig beheerst door de staat",
+                "Er zijn geen organisaties",
+                "De staat heeft geen invloed op media"
+              ],
+              "correct": 1,
+              "hint": "Denk aan de kern van het begrip Totalitaire staat.",
+              "explanation": "Een land waarin het leven van de inwoners volledig wordt beheerst door de staat. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§2 · Gelijkschakeling",
+              "learn": "Gelijkschakeling: Het onder directe controle brengen van alle organisaties en alle media in Duitsland door de nazi's.",
+              "type": "mc",
+              "question": "Wat werd met gelijkschakeling bedoeld?",
+              "options": [
+                "Het samenvoegen van boerderijen",
+                "Alle organisaties en media onder directe controle van de nazi's brengen",
+                "Het sluiten van een vredesverdrag",
+                "Het verdelen van Polen"
+              ],
+              "correct": 1,
+              "hint": "Denk aan de kern van het begrip Gelijkschakeling.",
+              "explanation": "Het onder directe controle brengen van alle organisaties en alle media in Duitsland door de nazi's. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§2 · Indoctrinatie",
+              "learn": "Indoctrinatie: Het inprenten van een opvatting door deze continu te herhalen en geen andere meningen toe te staan.",
+              "type": "mc",
+              "question": "Hoe werkt indoctrinatie?",
+              "options": [
+                "Door steeds een opvatting te herhalen en andere meningen niet toe te staan",
+                "Door vrije verkiezingen te organiseren",
+                "Door goedkope leningen te geven",
+                "Door aandelen te verkopen"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Indoctrinatie.",
+              "explanation": "Het inprenten van een opvatting door deze continu te herhalen en geen andere meningen toe te staan. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§2 · Onderdrukking",
+              "learn": "Concentratiekamp: Grote kampen waarin bepaalde groepen mensen zonder proces worden opgesloten.",
+              "type": "mc",
+              "question": "Wat gebeurde er in een concentratiekamp volgens de definitie?",
+              "options": [
+                "Mensen werden opgesloten zonder proces",
+                "Burgers kozen het parlement",
+                "Werklozen kregen een vergoeding",
+                "Duitssprekenden verhuisden vrijwillig"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Concentratiekamp.",
+              "explanation": "Grote kampen waarin bepaalde groepen mensen zonder proces worden opgesloten. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§2 · Nazi-organisaties",
+              "learn": "Gestapo: De geheime politie in nazi-Duitsland.",
+              "type": "mc",
+              "question": "Wat was de Gestapo?",
+              "options": [
+                "De geheime politie in nazi-Duitsland",
+                "De politieke partij van Hitler",
+                "Een militaire organisatie van de Sovjet-Unie",
+                "Een vredesconferentie"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Gestapo.",
+              "explanation": "De geheime politie in nazi-Duitsland. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§2 · Nazi-organisaties",
+              "learn": "SA: De knokploeg van de NSDAP: een groep gewapende mannen in uniform die de partij beschermde en tegenstanders bang maakte.",
+              "type": "mc",
+              "question": "Wat was de SA?",
+              "options": [
+                "Een groep gewapende mannen in uniform die de NSDAP beschermde en tegenstanders bang maakte",
+                "De geheime politie van Stalin",
+                "Een Duitse vredesdelegatie",
+                "Een organisatie van boeren"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip SA.",
+              "explanation": "De knokploeg van de NSDAP: een groep gewapende mannen in uniform die de partij beschermde en tegenstanders bang maakte. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§2 · Nazi-organisaties",
+              "learn": "SS: Een militaire organisatie binnen de NSDAP die vooral tijdens de Tweede Wereldoorlog veel misdaden pleegde.",
+              "type": "mc",
+              "question": "Welke omschrijving hoort bij de SS?",
+              "options": [
+                "Een organisatie binnen de NSDAP die tijdens de Tweede Wereldoorlog veel misdaden pleegde",
+                "Een partij in Nederland",
+                "Een plan voor Duitse leningen",
+                "Een Franse vredesbeweging"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip SS.",
+              "explanation": "Een militaire organisatie binnen de NSDAP die vooral tijdens de Tweede Wereldoorlog veel misdaden pleegde. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§3 · Buitenlandpolitiek",
+              "learn": "Heim ins Reich: Het idee dat alle Duitssprekenden in één groot Duits rijk zouden moeten wonen.",
+              "type": "mc",
+              "question": "Wat betekende Heim ins Reich?",
+              "options": [
+                "Alle Duitssprekenden zouden in één groot Duits rijk moeten wonen",
+                "Duitsland zou nooit meer uitbreiden",
+                "Duitsland zou een parlementaire democratie worden",
+                "Duitsland zou Polen onafhankelijk maken"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Heim ins Reich.",
+              "explanation": "Het idee dat alle Duitssprekenden in één groot Duits rijk zouden moeten wonen. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§3 · Buitenlandpolitiek",
+              "learn": "Anschluss: De aansluiting in 1938 van Oostenrijk bij Duitsland.",
+              "type": "mc",
+              "question": "Wat was de Anschluss in 1938?",
+              "options": [
+                "De aansluiting van Oostenrijk bij Duitsland",
+                "De bezetting van het Ruhrgebied",
+                "De oprichting van de NSB",
+                "Het niet-aanvalsverdrag"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Anschluss.",
+              "explanation": "De aansluiting in 1938 van Oostenrijk bij Duitsland. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§3 · Conferentie van München",
+              "learn": "Conferentie van München: Een bijeenkomst in 1938 waarbij Groot-Brittannië en Frankrijk toestonden dat Hitler Sudetenland innam, in ruil voor Hitlers belofte om verder geen gebieden in te nemen.",
+              "type": "mc",
+              "question": "Wat stonden Groot-Brittannië en Frankrijk in 1938 toe?",
+              "options": [
+                "Dat Hitler Sudetenland innam",
+                "Dat Duitsland Polen innam",
+                "Dat Stalin Oostenrijk innam",
+                "Dat Duitsland de Sovjet-Unie aanviel"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Conferentie van München.",
+              "explanation": "Een bijeenkomst in 1938 waarbij Groot-Brittannië en Frankrijk toestonden dat Hitler Sudetenland innam, in ruil voor Hitlers belofte om verder geen gebieden in te nemen. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§3 · Appeasementpolitiek",
+              "learn": "Appeasementpolitiek: Britse en Franse politiek van niet ingrijpen maar toegeven aan Hitler om de vrede te bewaren.",
+              "type": "mc",
+              "question": "Wat was appeasementpolitiek?",
+              "options": [
+                "Niet ingrijpen maar toegeven aan Hitler om de vrede te bewaren",
+                "Een beleid om de economie volledig door de staat te laten leiden",
+                "Een plan om Duitse leningen terug te betalen",
+                "Een politiek om alle media vrij te maken"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Appeasementpolitiek.",
+              "explanation": "Britse en Franse politiek van niet ingrijpen maar toegeven aan Hitler om de vrede te bewaren. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§3 · Lebensraum",
+              "learn": "Lebensraum: Leefruimte voor het Duitse volk, die Hitler wilde krijgen door het Duitse grondgebied uit te breiden naar het oosten.",
+              "type": "mc",
+              "question": "Wat wilde Hitler met Lebensraum?",
+              "options": [
+                "Leefruimte voor het Duitse volk door het grondgebied naar het oosten uit te breiden",
+                "Een parlementaire democratie invoeren",
+                "De economie aan de Sovjet-Unie overdragen",
+                "Alle Duitse troepen ontwapenen"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Lebensraum.",
+              "explanation": "Leefruimte voor het Duitse volk, die Hitler wilde krijgen door het Duitse grondgebied uit te breiden naar het oosten. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§4 · Sovjet-Unie",
+              "learn": "Planeconomie: De economie wordt volledig geleid door de overheid.",
+              "type": "mc",
+              "question": "Wat is een planeconomie?",
+              "options": [
+                "De economie wordt volledig geleid door de overheid",
+                "Iedereen bezit eigen fabrieken",
+                "De aandelenkoersen bepalen de productie",
+                "De economie wordt door het parlement niet beïnvloed"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Planeconomie.",
+              "explanation": "De economie wordt volledig geleid door de overheid. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§4 · Sovjet-Unie",
+              "learn": "Collectivisatie: Zelfstandige boerderijen werden samengevoegd tot grote gezamenlijke boerderijen die bezit waren van de staat.",
+              "type": "mc",
+              "question": "Wat gebeurde bij collectivisatie?",
+              "options": [
+                "Zelfstandige boerderijen werden samengevoegd tot grote gezamenlijke staatsboerderijen",
+                "Alle boerderijen werden verkocht aan buitenlandse bedrijven",
+                "Boeren kregen eigen aandelen",
+                "De overheid stopte met landbouw"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Collectivisatie.",
+              "explanation": "Zelfstandige boerderijen werden samengevoegd tot grote gezamenlijke boerderijen die bezit waren van de staat. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§4 · Sovjet-Unie",
+              "learn": "Grote Terreur: Periode van 1936 tot 1938, waarin de zuiveringen van Stalin op een hoogtepunt waren.",
+              "type": "mc",
+              "question": "Wat was de Grote Terreur?",
+              "options": [
+                "De periode 1936-1938 waarin Stalins zuiveringen op een hoogtepunt waren",
+                "De periode van de Duitse inflatie",
+                "De bijeenkomst in München",
+                "De economische crisis van 1929"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Grote Terreur.",
+              "explanation": "Periode van 1936 tot 1938, waarin de zuiveringen van Stalin op een hoogtepunt waren. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§4 · Sovjet-Unie",
+              "learn": "Showproces: Een rechtszaak waarbij al van tevoren vaststaat dat een verdachte schuldig wordt bevonden.",
+              "type": "mc",
+              "question": "Wat is een showproces?",
+              "options": [
+                "Een rechtszaak waarbij van tevoren vaststaat dat de verdachte schuldig wordt bevonden",
+                "Een openbaar debat tussen partijen",
+                "Een proces om aandelen te verkopen",
+                "Een geheime vredesbespreking"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Showproces.",
+              "explanation": "Een rechtszaak waarbij al van tevoren vaststaat dat een verdachte schuldig wordt bevonden. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§4 · Sovjet-Unie",
+              "learn": "Stalinisme: Stalins manier van besturen.",
+              "type": "mc",
+              "question": "Wat wordt bedoeld met stalinisme?",
+              "options": [
+                "Stalins manier van besturen",
+                "Hitlers manier van besturen",
+                "De Franse politiek van toegeven",
+                "Een Duitse economische lening"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Stalinisme.",
+              "explanation": "Stalins manier van besturen. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§4 · Sovjet-Unie",
+              "learn": "Niet-aanvalsverdrag: Verdrag uit 1939 waarin Duitsland en de Sovjet-Unie beloofden elkaar niet aan te vallen en elkaars tegenstanders niet te hulp te komen. In een geheim gedeelte van dit verdrag stond dat Polen tussen beide landen werd verdeeld.",
+              "type": "mc",
+              "question": "Wat spraken Duitsland en de Sovjet-Unie in 1939 af in het niet-aanvalsverdrag?",
+              "options": [
+                "Elkaar niet aanvallen en elkaars tegenstanders niet helpen",
+                "Samen Frankrijk aanvallen",
+                "Oostenrijk onafhankelijk maken",
+                "Een parlementaire democratie invoeren"
+              ],
+              "correct": 0,
+              "hint": "Denk aan de kern van het begrip Niet-aanvalsverdrag.",
+              "explanation": "Verdrag uit 1939 waarin Duitsland en de Sovjet-Unie beloofden elkaar niet aan te vallen en elkaars tegenstanders niet te hulp te komen. In een geheim gedeelte van dit verdrag stond dat Polen tussen beide landen werd verdeeld. Daarom is dit het juiste antwoord."
+            },
+            {
+              "lessonTitle": "§2 · Begrippen toepassen",
+              "learn": "Beheers het begrip: Führerprincipe. Formuleer de betekenis in je eigen woorden.",
+              "type": "open",
+              "question": "Welk begrip past bij een politiek systeem waarin één leider alle besluiten neemt?",
+              "answer": "Führerprincipe",
+              "hint": "Gebruik de omschrijving uit de begrippenlijst en noem de belangrijkste onderdelen.",
+              "explanation": "Modelantwoord volgens de aangeleverde begrippenlijst: Führerprincipe"
+            },
+            {
+              "lessonTitle": "§2 · Begrippen toepassen",
+              "learn": "Beheers het begrip: Dictatuur en totalitaire staat. Formuleer de betekenis in je eigen woorden.",
+              "type": "open",
+              "question": "Leg het verschil uit tussen een dictatuur en een totalitaire staat.",
+              "answer": "Bij een dictatuur heeft één persoon of kleine groep alle macht. In een totalitaire staat beheerst de staat bovendien het leven van de inwoners volledig.",
+              "hint": "Gebruik de omschrijving uit de begrippenlijst en noem de belangrijkste onderdelen.",
+              "explanation": "Modelantwoord volgens de aangeleverde begrippenlijst: Bij een dictatuur heeft één persoon of kleine groep alle macht. In een totalitaire staat beheerst de staat bovendien het leven van de inwoners volledig."
+            },
+            {
+              "lessonTitle": "§3 · Begrippen toepassen",
+              "learn": "Beheers het begrip: Appeasementpolitiek. Formuleer de betekenis in je eigen woorden.",
+              "type": "open",
+              "question": "Leg in je eigen woorden uit wat appeasementpolitiek was.",
+              "answer": "Britse en Franse politiek van niet ingrijpen maar toegeven aan Hitler om de vrede te bewaren.",
+              "hint": "Gebruik de omschrijving uit de begrippenlijst en noem de belangrijkste onderdelen.",
+              "explanation": "Modelantwoord volgens de aangeleverde begrippenlijst: Britse en Franse politiek van niet ingrijpen maar toegeven aan Hitler om de vrede te bewaren."
+            },
+            {
+              "lessonTitle": "§4 · Begrippen toepassen",
+              "learn": "Beheers het begrip: Niet-aanvalsverdrag. Formuleer de betekenis in je eigen woorden.",
+              "type": "open",
+              "question": "Wat stond in het geheime gedeelte van het niet-aanvalsverdrag?",
+              "answer": "Dat Polen tussen Duitsland en de Sovjet-Unie werd verdeeld.",
+              "hint": "Gebruik de omschrijving uit de begrippenlijst en noem de belangrijkste onderdelen.",
+              "explanation": "Modelantwoord volgens de aangeleverde begrippenlijst: Dat Polen tussen Duitsland en de Sovjet-Unie werd verdeeld."
+            }
+          ]
+        },
+        {
+          "type": "flashcards",
+          "subject": "Geschiedenis",
+          "title": "Geschiedenis · Blauwe begrippen interbellum",
+          "description": "Alle blauw gedrukte begrippen uit de foto's met de omschrijvingen uit het boek.",
+          "cards": [
+            {
+              "front": "Interbellum",
+              "back": "De periode tussen de twee wereldoorlogen (1918-1939)."
+            },
+            {
+              "front": "Republiek van Weimar",
+              "back": "Naam voor Duitsland tussen 1918 en 1933. In die tijd was Duitsland een parlementaire democratie."
+            },
+            {
+              "front": "Parlementaire democratie",
+              "back": "Een bestuursvorm waarin de macht ligt bij een parlement dat gekozen wordt door de burgers."
+            },
+            {
+              "front": "Dolkstootlegende",
+              "back": "Het idee dat het Duitse leger de Eerste Wereldoorlog had kunnen winnen als de regering in 1918 geen wapenstilstand had gesloten."
+            },
+            {
+              "front": "Verdrag van Versailles",
+              "back": "Het vredesverdrag tussen Duitsland en de geallieerden na afloop van de Eerste Wereldoorlog."
+            },
+            {
+              "front": "Inflatie",
+              "back": "Het geld wordt minder waard."
+            },
+            {
+              "front": "Dawesplan",
+              "back": "Plan uit 1924 dat inhield dat de Verenigde Staten goedkope leningen aan Duitsland gaven om zijn economie weer op te bouwen."
+            },
+            {
+              "front": "Economische crisis",
+              "back": "Een periode waarin het slecht gaat met de economie."
+            },
+            {
+              "front": "Beurskrach",
+              "back": "Een grote, plotselinge daling van de koersen van aandelen."
+            },
+            {
+              "front": "Nationaalsocialistische Duitse Arbeiderspartij (NSDAP)",
+              "back": "De politieke partij van Adolf Hitler."
+            },
+            {
+              "front": "Nationaalsocialisme",
+              "back": "Trots zijn op je eigen land, volk en cultuur."
+            },
+            {
+              "front": "Nationalisme",
+              "back": "Trots zijn op je eigen land, volk en cultuur."
+            },
+            {
+              "front": "Führerprincipe",
+              "back": "Er is één leider die alle besluiten neemt en aan wie iedereen gehoorzaamt."
+            },
+            {
+              "front": "Persoonsverheerlijking",
+              "back": "Een mens als een soort god vereren."
+            },
+            {
+              "front": "Militarisme",
+              "back": "Het idee dat oorlog iets moois is. Elk land kan dan laten zien hoe sterk het is."
+            },
+            {
+              "front": "Antisemitisme",
+              "back": "Haat tegen joden."
+            },
+            {
+              "front": "Dictatuur",
+              "back": "Een manier van regeren waarbij één persoon of een kleine groep alle macht heeft."
+            },
+            {
+              "front": "Totalitaire staat",
+              "back": "Een land waarin het leven van de inwoners volledig wordt beheerst door de staat."
+            },
+            {
+              "front": "Gelijkschakeling",
+              "back": "Het onder directe controle brengen van alle organisaties en alle media in Duitsland door de nazi's."
+            },
+            {
+              "front": "Indoctrinatie",
+              "back": "Het inprenten van een opvatting door deze continu te herhalen en geen andere meningen toe te staan."
+            },
+            {
+              "front": "Concentratiekamp",
+              "back": "Grote kampen waarin bepaalde groepen mensen zonder proces worden opgesloten."
+            },
+            {
+              "front": "Gestapo",
+              "back": "De geheime politie in nazi-Duitsland."
+            },
+            {
+              "front": "SA",
+              "back": "De knokploeg van de NSDAP: een groep gewapende mannen in uniform die de partij beschermde en tegenstanders bang maakte."
+            },
+            {
+              "front": "SS",
+              "back": "Een militaire organisatie binnen de NSDAP die vooral tijdens de Tweede Wereldoorlog veel misdaden pleegde."
+            },
+            {
+              "front": "Heim ins Reich",
+              "back": "Het idee dat alle Duitssprekenden in één groot Duits rijk zouden moeten wonen."
+            },
+            {
+              "front": "Anschluss",
+              "back": "De aansluiting in 1938 van Oostenrijk bij Duitsland."
+            },
+            {
+              "front": "Conferentie van München",
+              "back": "Een bijeenkomst in 1938 waarbij Groot-Brittannië en Frankrijk toestonden dat Hitler Sudetenland innam, in ruil voor Hitlers belofte om verder geen gebieden in te nemen."
+            },
+            {
+              "front": "Appeasementpolitiek",
+              "back": "Britse en Franse politiek van niet ingrijpen maar toegeven aan Hitler om de vrede te bewaren."
+            },
+            {
+              "front": "Lebensraum",
+              "back": "Leefruimte voor het Duitse volk, die Hitler wilde krijgen door het Duitse grondgebied uit te breiden naar het oosten."
+            },
+            {
+              "front": "Fascisme",
+              "back": "Een extreemrechtse politieke beweging die ontstond in Italië. Fascisten zijn extreem nationalistisch, militaristisch en tegen democratie."
+            },
+            {
+              "front": "Aanpassingspolitiek",
+              "back": "Politiek waarbij de uitgaven van de overheid werden aangepast aan de teruglopende inkomsten: bezuinigen."
+            },
+            {
+              "front": "Werkverschaffingsproject",
+              "back": "Groot project dat de regering organiseerde, waar werklozen verplicht zwaar werk deden in ruil voor een vergoeding."
+            },
+            {
+              "front": "Nationaal-Socialistische Beweging (NSB)",
+              "back": "Een extreemrechtse politieke partij die in 1931 door Anton Mussert in Nederland werd opgericht."
+            },
+            {
+              "front": "Communisme",
+              "back": "Een politieke stroming. Communisten streven naar een samenleving waarin iedereen gelijk is."
+            },
+            {
+              "front": "Planeconomie",
+              "back": "De economie wordt volledig geleid door de overheid."
+            },
+            {
+              "front": "Vijfjarenplannen",
+              "back": "Plannen waarin staat wat en hoeveel er in vijf jaar geproduceerd moet worden."
+            },
+            {
+              "front": "Collectivisatie",
+              "back": "Zelfstandige boerderijen werden samengevoegd tot grote gezamenlijke boerderijen die bezit waren van de staat."
+            },
+            {
+              "front": "Grote Terreur",
+              "back": "Periode van 1936 tot 1938, waarin de zuiveringen van Stalin op een hoogtepunt waren."
+            },
+            {
+              "front": "Showproces",
+              "back": "Een rechtszaak waarbij al van tevoren vaststaat dat een verdachte schuldig wordt bevonden."
+            },
+            {
+              "front": "Stalinisme",
+              "back": "Stalins manier van besturen."
+            },
+            {
+              "front": "Niet-aanvalsverdrag",
+              "back": "Verdrag uit 1939 waarin Duitsland en de Sovjet-Unie beloofden elkaar niet aan te vallen en elkaars tegenstanders niet te hulp te komen. In een geheim gedeelte van dit verdrag stond dat Polen tussen beide landen werd verdeeld."
+            }
+          ]
+        }
+      ]
     }
   ],
   "exams": []
